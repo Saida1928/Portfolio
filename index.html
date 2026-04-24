@@ -5,12 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#050505;
-  --card:#0c0c0c;
   --gold:#C9A84C;
   --red:#8B0000;
   --white:#fff;
@@ -31,8 +30,8 @@ nav{
   padding:20px 60px;
   display:flex;
   justify-content:space-between;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(20px);
+  align-items:center;
+  background:rgba(0,0,0,0.8);
   border-bottom:1px solid rgba(201,168,76,0.2);
   z-index:1000;
 }
@@ -42,21 +41,97 @@ nav{
   color:var(--gold);
 }
 
+/* TOGGLE */
+.toggle{
+  width:60px;
+  height:28px;
+  background:#222;
+  border-radius:20px;
+  position:relative;
+  cursor:pointer;
+}
+
+.handle{
+  width:24px;
+  height:24px;
+  background:#aaa;
+  border-radius:50%;
+  position:absolute;
+  top:2px;
+  left:2px;
+  transition:.3s;
+}
+
+.toggle.active .handle{
+  left:34px;
+  background:var(--gold);
+}
+
 /* HERO */
 .hero{
   height:100vh;
   display:flex;
   align-items:center;
-  padding:120px 60px;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
 .hero h1{
   font-family:'Orbitron';
   font-size:70px;
+  transition:.4s;
 }
 
 .hero span{
   color:var(--gold);
+}
+
+/* LIGHT EFFECT */
+.hero.light-on h1{
+  text-shadow:
+    0 0 20px rgba(255,255,255,0.6),
+    0 0 40px rgba(255,0,0,0.5),
+    0 0 80px rgba(255,0,0,0.3);
+}
+
+/* LIGHT BEAM */
+.beam{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:300px;
+  height:0;
+  background:linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  opacity:0;
+  filter:blur(20px);
+  transition:.5s;
+}
+
+.hero.light-on .beam{
+  height:350px;
+  opacity:1;
+}
+
+/* FLIGHT */
+.flight{
+  position:absolute;
+  top:30%;
+  left:-100px;
+  font-size:30px;
+  opacity:0;
+}
+
+.hero.light-on .flight{
+  animation:fly 4s linear infinite;
+  opacity:1;
+}
+
+@keyframes fly{
+  0%{left:-100px;}
+  100%{left:110%;}
 }
 
 /* SECTION */
@@ -67,71 +142,22 @@ nav{
 .title{
   font-family:'Orbitron';
   color:var(--gold);
-  margin-bottom:40px;
+  margin-bottom:30px;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
 }
 
-/* CARDS */
+/* CARD */
 .card{
-  background:rgba(255,255,255,0.02);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(201,168,76,0.15);
-  border-radius:16px;
-  padding:30px;
-  position:relative;
-  transform-style:preserve-3d;
-  transition:all .3s ease;
-  overflow:hidden;
-}
-
-/* Batman Logo */
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url('images/batman.png') center/contain no-repeat;
-  opacity:0;
-  filter:drop-shadow(0 0 30px red);
-  transition:.4s;
-}
-
-.card:hover::before{
-  opacity:0.1;
-}
-
-/* Hover feel */
-.card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 40px rgba(0,0,0,0.6);
-}
-
-/* SPRINKLES */
-.spark{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:var(--red);
-  box-shadow:0 0 8px red;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9999;
-}
-
-.fall{
-  animation:fall 1s forwards;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(400px);
-    opacity:0;
-  }
+  background:#0a0a0a;
+  border:1px solid rgba(201,168,76,0.2);
+  padding:25px;
+  border-radius:12px;
 }
 
 /* FOOTER */
@@ -139,7 +165,6 @@ footer{
   text-align:center;
   padding:60px;
   border-top:1px solid rgba(201,168,76,0.2);
-  color:#aaa;
 }
 </style>
 </head>
@@ -148,20 +173,23 @@ footer{
 
 <nav>
   <div class="logo">PORTFOLIO</div>
+
+  <div class="toggle" id="toggle" onclick="toggleLight()">
+    <div class="handle"></div>
+  </div>
 </nav>
 
-<section class="hero">
-  <div>
-    <h1>SAIDA <span>VALI SHAIK</span></h1>
-    <p>Business Analyst & Product Consultant</p>
-  </div>
+<section class="hero" id="hero">
+  <div class="beam"></div>
+  <div class="flight">✈️</div>
+  <h1>SAIDA <span>VALI SHAIK</span></h1>
 </section>
 
 <!-- SUMMARY -->
 <section class="section">
   <div class="title">SUMMARY</div>
   <div class="card">
-    Business Analyst & Product Consultant with 3+ years of experience delivering data-driven solutions across Airline, EdTech, and Energy domains. Skilled in Agile, stakeholder management, and analytics.
+    Business Analyst & Product Consultant with 3+ years of experience across Airline, EdTech, and Energy domains. Skilled in Agile, stakeholder communication, and data-driven decision making.
   </div>
 </section>
 
@@ -182,12 +210,12 @@ footer{
   <div class="grid">
     <div class="card">
       <b>Product Consultant – Caliber Technologies</b><br><br>
-      Worked on EPIQ platform, managed 3 enterprise clients, handled issue tracking, demos, and product improvements.
+      Worked on EPIQ platform, handled 3 client projects, resolved issues, conducted demos and product improvements.
     </div>
 
     <div class="card">
       <b>Business Analyst – Inspire Infosol</b><br><br>
-      Gathered requirements, worked on airline systems, coordinated teams, and supported UAT execution.
+      Gathered requirements, worked on airline systems, coordinated teams, supported UAT and reporting.
     </div>
   </div>
 </section>
@@ -220,71 +248,13 @@ footer{
 </footer>
 
 <script>
+function toggleLight(){
+  const hero=document.getElementById('hero');
+  const toggle=document.getElementById('toggle');
 
-/* ---------- SCROLL 3D EFFECT ---------- */
-let lastScroll=0;
-
-window.addEventListener('scroll',()=>{
-  const current=window.scrollY;
-  const direction=current>lastScroll?'down':'up';
-
-  document.querySelectorAll('.card').forEach((card,i)=>{
-    const depth=i*2;
-
-    if(direction==='down'){
-      card.style.transform=`perspective(1000px) rotateX(${6+depth}deg) translateY(-10px)`;
-    }else{
-      card.style.transform=`perspective(1000px) rotateX(0deg) translateY(0px)`;
-    }
-  });
-
-  lastScroll=current;
-});
-
-/* ---------- MOUSE 3D TILT ---------- */
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('mousemove',(e)=>{
-    const r=card.getBoundingClientRect();
-    const x=e.clientX-r.left;
-    const y=e.clientY-r.top;
-
-    const rx=((y-r.height/2)/25)*-1;
-    const ry=(x-r.width/2)/25;
-
-    card.style.transform+=` rotateX(${rx}deg) rotateY(${ry}deg)`;
-  });
-
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform='';
-  });
-});
-
-/* ---------- RED SPRINKLES ---------- */
-let lastX=0,lastY=0;
-
-document.addEventListener('mousemove',e=>{
-  const dx=e.clientX-lastX;
-  const dy=e.clientY-lastY;
-  const distance=Math.sqrt(dx*dx+dy*dy);
-
-  const spark=document.createElement('div');
-  spark.className='spark';
-  spark.style.left=e.clientX+'px';
-  spark.style.top=e.clientY+'px';
-
-  document.body.appendChild(spark);
-
-  if(distance>200){
-    spark.classList.add('fall');
-    setTimeout(()=>spark.remove(),1000);
-  } else {
-    setTimeout(()=>spark.remove(),400);
-  }
-
-  lastX=e.clientX;
-  lastY=e.clientY;
-});
-
+  hero.classList.toggle('light-on');
+  toggle.classList.toggle('active');
+}
 </script>
 
 </body>
