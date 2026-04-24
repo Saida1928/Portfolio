@@ -20,7 +20,6 @@ body{
   background:var(--bg);
   color:var(--white);
   font-family:'Inter';
-  overflow-x:hidden;
 }
 
 /* NAV */
@@ -31,7 +30,7 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(0,0,0,0.8);
+  background:rgba(0,0,0,0.85);
   border-bottom:1px solid rgba(201,168,76,0.2);
   z-index:1000;
 }
@@ -39,32 +38,47 @@ nav{
 .logo{
   font-family:'Orbitron';
   color:var(--gold);
+  letter-spacing:3px;
 }
 
 /* TOGGLE */
+.toggle-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:'Orbitron';
+  color:var(--gold);
+}
+
 .toggle{
   width:60px;
   height:28px;
-  background:#222;
+  background:#111;
   border-radius:20px;
   position:relative;
   cursor:pointer;
+  border:1px solid rgba(201,168,76,0.5);
+  box-shadow:0 0 10px rgba(201,168,76,0.2);
 }
 
 .handle{
-  width:24px;
-  height:24px;
-  background:#aaa;
+  width:22px;
+  height:22px;
+  background:#444;
   border-radius:50%;
   position:absolute;
-  top:2px;
-  left:2px;
+  top:3px;
+  left:3px;
   transition:.3s;
 }
 
-.toggle.active .handle{
-  left:34px;
+.toggle.active{
   background:var(--gold);
+}
+
+.toggle.active .handle{
+  left:35px;
+  background:#fff;
 }
 
 /* HERO */
@@ -96,7 +110,7 @@ nav{
     0 0 80px rgba(255,0,0,0.3);
 }
 
-/* LIGHT BEAM */
+/* BEAM */
 .beam{
   position:absolute;
   top:0;
@@ -158,6 +172,12 @@ nav{
   border:1px solid rgba(201,168,76,0.2);
   padding:25px;
   border-radius:12px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
 /* FOOTER */
@@ -174,8 +194,11 @@ footer{
 <nav>
   <div class="logo">PORTFOLIO</div>
 
-  <div class="toggle" id="toggle" onclick="toggleLight()">
-    <div class="handle"></div>
+  <div class="toggle-wrap">
+    <span>LIGHT</span>
+    <div class="toggle" id="toggle" onclick="toggleLight()">
+      <div class="handle"></div>
+    </div>
   </div>
 </nav>
 
@@ -189,7 +212,7 @@ footer{
 <section class="section">
   <div class="title">SUMMARY</div>
   <div class="card">
-    Business Analyst & Product Consultant with 3+ years of experience across Airline, EdTech, and Energy domains. Skilled in Agile, stakeholder communication, and data-driven decision making.
+    Business Analyst & Product Consultant with 3+ years of experience delivering data-driven solutions across Airline, EdTech, and Energy domains.
   </div>
 </section>
 
@@ -198,7 +221,7 @@ footer{
   <div class="title">SKILLS</div>
   <div class="grid">
     <div class="card">Requirement Gathering, BRD, FRD, SRS</div>
-    <div class="card">Jira, Azure DevOps, Power BI, Tableau</div>
+    <div class="card">Jira, Azure DevOps, Power BI</div>
     <div class="card">SQL, Excel, Data Analysis</div>
     <div class="card">Testing, UAT, Regression</div>
   </div>
@@ -210,12 +233,12 @@ footer{
   <div class="grid">
     <div class="card">
       <b>Product Consultant – Caliber Technologies</b><br><br>
-      Worked on EPIQ platform, handled 3 client projects, resolved issues, conducted demos and product improvements.
+      Managed enterprise clients, handled issue tracking, demos, and product improvements.
     </div>
 
     <div class="card">
       <b>Business Analyst – Inspire Infosol</b><br><br>
-      Gathered requirements, worked on airline systems, coordinated teams, supported UAT and reporting.
+      Gathered requirements, worked on airline systems, supported UAT and reporting.
     </div>
   </div>
 </section>
@@ -226,10 +249,9 @@ footer{
   <div class="grid">
     <div class="card">Airline Reservation System</div>
     <div class="card">Airline Loyalty Platform</div>
-    <div class="card">Chatbot (LLM-based)</div>
+    <div class="card">Chatbot (LLM)</div>
     <div class="card">Career Guidance Platform</div>
-    <div class="card">Test Management Suite</div>
-    <div class="card">Solar PV Delivery Project</div>
+    <div class="card">Solar PV Project</div>
   </div>
 </section>
 
