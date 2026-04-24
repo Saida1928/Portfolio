@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#050505;
+  --red:#8B0000;
+  --gold:#C9A84C;
+  --white:#ffffff;
+}
+
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--white);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  padding:20px 60px;
+  display:flex;
+  justify-content:space-between;
+  background:rgba(0,0,0,0.8);
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  z-index:999;
+}
+
+.logo{
+  font-family:'Orbitron';
+  color:var(--gold);
+  letter-spacing:4px;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:120px 60px;
+}
+
+.hero h1{
+  font-family:'Orbitron';
+  font-size:70px;
+  letter-spacing:6px;
+}
+
+.hero h1 span{
+  color:var(--gold);
+}
+
+/* SECTION */
+.section{
+  padding:100px 60px;
+}
+
+.title{
+  font-family:'Orbitron';
+  color:var(--gold);
+  margin-bottom:40px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
+
+/* CARDS */
+.card{
+  background:#0a0a0a;
+  border:1px solid rgba(201,168,76,0.2);
+  padding:30px;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .1s linear;
+  overflow:hidden;
+}
+
+/* BATMAN IMAGE BACKGROUND */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('/mnt/data/65559359-7c37-4f33-af80-d1b93709f2e1.png') center/contain no-repeat;
+  opacity:0;
+  filter:drop-shadow(0 0 20px red);
+  transition:.4s;
+}
+
+.card:hover::after{
+  opacity:0.15;
+}
+
+/* SPARKS */
+.spark{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:var(--gold);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+}
+
+.fall{
+  animation:fallDown 1s ease forwards;
+}
+
+@keyframes fallDown{
+  to{
+    transform:translateY(300px);
+    opacity:0;
+  }
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:60px;
+  border-top:1px solid rgba(201,168,76,0.2);
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">PORTFOLIO</div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>SAIDA <span>VALI SHAIK</span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="title">EXPERIENCE</div>
+  <div class="grid">
+    <div class="card">Product Consultant — Caliber</div>
+    <div class="card">Business Analyst — Inspire</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="title">PROJECTS</div>
+  <div class="grid">
+    <div class="card">Airline Reservation System</div>
+    <div class="card">Chatbot AI</div>
+    <div class="card">Solar Project</div>
+  </div>
+</section>
+
+<footer>
+  📞 +91-7569784511 <br><br>
+  📧 saidashaik1319@gmail.com
+</footer>
+
+<script>
+
+/* 3D TILT */
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mousemove',(e)=>{
+    const rect=card.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+
+    const rotateX=((y-rect.height/2)/10)*-1;
+    const rotateY=(x-rect.width/2)/10;
+
+    card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='rotateX(0) rotateY(0)';
+  });
+});
+
+/* SPRINKLE SYSTEM */
+let sparks=[];
+let timeout;
+
+document.addEventListener('mousemove',(e)=>{
+  clearTimeout(timeout);
+
+  for(let i=0;i<2;i++){
+    const spark=document.createElement('div');
+    spark.className='spark';
+    spark.style.left=e.clientX+'px';
+    spark.style.top=e.clientY+'px';
+
+    document.body.appendChild(spark);
+    sparks.push(spark);
+  }
+
+  timeout=setTimeout(()=>{
+    dropSparks();
+  },150);
+});
+
+function dropSparks(){
+  sparks.forEach(s=>{
+    s.classList.add('fall');
+    setTimeout(()=>s.remove(),1000);
+  });
+  sparks=[];
+}
+
+/* SCROLL EFFECT */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity=1;
+      entry.target.style.transform='translateY(0)';
+    }
+  });
+});
+
+document.querySelectorAll('.card').forEach(card=>{
+  card.style.opacity=0;
+  card.style.transform='translateY(50px)';
+  observer.observe(card);
+});
+
+</script>
+
+</body>
+</html>
