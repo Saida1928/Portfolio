@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charsettitle><meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saida Vali Shaik | Product Portfolio</title>
 
 <style>
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -11,92 +14,100 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* BACKGROUND */
 body {
-  color: #fff;
   background: #000;
-  padding: 40px;
+  color: #fff;
   overflow-x: hidden;
+  padding: clamp(16px, 4vw, 40px);
 }
 
-/* PARTICLE CANVAS */
+/* ================= BACKGROUND ================= */
 #particles {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
+  inset: 0;
+  z-index: -3;
   background: radial-gradient(circle at top, #1a0000, #000);
 }
 
-/* HERO */
+/* BATMAN LOGO */
+.batman {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  opacity: 0.05;
+  z-index: -2;
+  animation: float 8s ease-in-out infinite;
+}
+
+.batman::before,
+.batman::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: black;
+  border-radius: 50%;
+}
+
+.batman::after {
+  clip-path: polygon(
+    0% 50%, 10% 35%, 20% 45%, 30% 40%, 40% 50%,
+    50% 35%, 60% 50%, 70% 40%, 80% 45%, 90% 35%, 100% 50%,
+    85% 70%, 15% 70%
+  );
+  background: black;
+}
+
+@keyframes float {
+  0%,100% { transform: translate(-50%, -52%); }
+  50% { transform: translate(-50%, -48%); }
+}
+
+/* ================= HERO ================= */
 .hero {
   text-align: center;
   margin-bottom: 60px;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
-  letter-spacing: 4px;
-  text-shadow: 0 0 15px red;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  letter-spacing: 3px;
+  text-shadow: 0 0 25px red;
 }
 
 .subtitle {
   color: #ff2a2a;
-  font-size: 1.2rem;
   margin-top: 12px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
-.location {
-  opacity: 0.8;
-  margin-top: 6px;
-}
-
-/* CARD */
+/* ================= CARDS ================= */
 .card {
   background: linear-gradient(145deg, #0d0d0d, #000);
-  border: 1px solid #300;
-  border-radius: 18px;
-  padding: 30px;
-  margin-bottom: 35px;
-  box-shadow: 0 20px 40px rgba(255,0,0,0.25);
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  animation: fadeInUp 1.2s ease forwards;
-  opacity: 0;
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 36px;
+  box-shadow: 0 25px 60px rgba(255,0,0,.35);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
 .card:hover {
-  transform: translateY(-12px) rotateX(3deg);
-  box-shadow: 0 45px 80px rgba(255,0,0,0.45);
+  box-shadow: 0 45px 100px rgba(255,0,0,.55);
 }
 
 h2 {
-  color: #ff3030;
-  margin-bottom: 15px;
+  color: #ff3b3b;
+  margin-bottom: 14px;
 }
 
 h3 {
-  color: #ff5a5a;
-  margin-top: 20px;
+  color: #ff6b6b;
+  margin-top: 14px;
 }
 
-.date {
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-ul {
-  margin-left: 22px;
-  margin-top: 10px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-/* SKILL GRID */
+/* ================= GRID ================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -104,169 +115,169 @@ li {
 }
 
 .grid span {
-  background: #111;
-  padding: 12px;
+  background: #130000;
+  padding: 14px;
   border-left: 4px solid red;
-  box-shadow: inset 0 0 10px rgba(255,0,0,0.25);
 }
 
-/* CONTACT */
+/* ================= CASE ================= */
+.case {
+  background: #120000;
+  border-left: 4px solid red;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 8px;
+}
+
+/* ================= CONTACT ================= */
 .contact {
   text-align: center;
+  font-size: 1.05rem;
 }
 
-/* ANIMATION DELAYS */
-.delay1 { animation-delay: .3s; }
-.delay2 { animation-delay: .6s; }
-.delay3 { animation-delay: .9s; }
-.delay4 { animation-delay: 1.2s; }
-
-/* FADE IN */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .card { padding: 20px }
 }
+
+/* ================= FADE IN ================= */
+.card { animation: fade 1s ease forwards; opacity: 0 }
+@keyframes fade { to { opacity: 1 } }
 </style>
 </head>
 
 <body>
 
 <canvas id="particles"></canvas>
+<div class="batman"></div>
 
 <!-- HERO -->
 <section class="hero">
   <h1>SAIDA VALI SHAIK</h1>
-  <p class="subtitle">Product Consultant | Business Analyst | Aspiring Product Manager</p>
-  <p class="location">Hyderabad, India</p>
+  <p class="subtitle">
+    Product Consultant · Business Analyst · Aspiring Product Manager
+  </p>
 </section>
 
 <!-- SUMMARY -->
-<section class="card delay1">
+<section class="card">
   <h2>Professional Summary</h2>
   <p>
-    Business Analyst & Product Consultant with 3+ years of experience delivering
-    data‑driven and client‑focused solutions across Airline, EdTech, and Energy domains.
-    Strong in Agile delivery, stakeholder management, and product improvement.
+    Product‑focused Business Analyst with <strong>3+ years</strong> of experience
+    delivering data‑driven solutions across <strong>Airline, EdTech, and Energy</strong>
+    domains. Strong in Agile delivery, stakeholder communication, and turning
+    business needs into impactful product outcomes.
   </p>
 </section>
 
 <!-- SKILLS -->
-<section class="card delay2">
+<section class="card">
   <h2>Core Skills</h2>
   <div class="grid">
     <span>Product & Business Analysis</span>
-    <span>BRD / FRD / SRS</span>
-    <span>Agile & Scrum</span>
-    <span>Jira / Confluence</span>
-    <span>Azure DevOps</span>
-    <span>Excel / SQL / Power BI</span>
-    <span>UAT & QA</span>
-    <span>Client Management</span>
+    <span>BRD / FRD / SRS / User Stories</span>
+    <span>Agile · Scrum · SDLC</span>
+    <span>Jira · Confluence · Azure DevOps</span>
+    <span>Excel · SQL · Power BI</span>
+    <span>UAT · QA · Defect Management</span>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section class="card delay3">
-  <h2>Professional Experience</h2>
+<section class="card">
+  <h2>Experience</h2>
+  <h3>Product Consultant — Caliber Technologies</h3>
+  <p>
+    Owned client interactions for enterprise pharma customers, handled issue
+    triage, release walkthroughs, and ensured smooth post‑deployment adoption
+    of the EPIQ LearnIQ platform.
+  </p>
 
-  <h3>Caliber Technologies — Product Consultant</h3>
-  <p class="date">Nov 2025 – Present</p>
-  <ul>
-    <li>Primary client contact for EPIQ (LearnIQ module)</li>
-    <li>Handled 3 enterprise pharma clients</li>
-    <li>Tracked issues using Azure DevOps</li>
-    <li>Conducted demos, releases & patch sessions</li>
-  </ul>
-
-  <h3>Inspire Infosol — Business Analyst & QA</h3>
-  <p class="date">Jan 2023 – Jul 2025</p>
-  <ul>
-    <li>Requirements gathering & documentation</li>
-    <li>SQL & Excel data validation</li>
-    <li>UAT execution and reporting</li>
-  </ul>
+  <h3>Business Analyst & QA — Inspire Infosol</h3>
+  <p>
+    Acted as a bridge between business and engineering teams, managed
+    requirements, supported UAT, and improved delivery quality for airline
+    platforms.
+  </p>
 </section>
 
-<!-- PROJECTS -->
-<section class="card delay4">
-  <h2>Key Projects</h2>
-  <ul>
-    <li>✈ Airline Reservation System</li>
-    <li>🎯 Loyalty & Discount Platform</li>
-    <li>🤖 NLP / LLM Chatbot</li>
-    <li>🎓 Career Guidance Platform</li>
-    <li>☀ Solar PV Delivery Project</li>
-  </ul>
+<!-- CASE STUDIES -->
+<section class="card">
+  <h2>Selected Case Studies</h2>
+
+  <div class="case">
+    <strong>✈ Airline Reservation System</strong><br>
+    Simplified booking, cancellation, and modification flows, reducing UAT defects
+    and improving user success rate.
+  </div>
+
+  <div class="case">
+    <strong>🤖 LLM‑Based Airline Chatbot</strong><br>
+    Designed conversational flows and validated responses to improve customer
+    self‑service efficiency.
+  </div>
 </section>
 
 <!-- CONTACT -->
-<section class="card contact delay4">
+<section class="card contact">
   <h2>Contact</h2>
   <p>📞 +91‑7569784511</p>
   <p>📧 saidashaik1319@gmail.com</p>
+  <p>📍 Hyderabad, India</p>
 </section>
 
-<!-- PARTICLE SCRIPT -->
+<!-- PARTICLES JS -->
 <script>
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+const c = document.getElementById("particles"),
+ctx = c.getContext("2d");
+let w, h, p=[];
 
-let particles = [];
-const count = 90;
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+function resize(){
+  w = c.width = window.innerWidth;
+  h = c.height = window.innerHeight;
 }
-resize();
-window.addEventListener("resize", resize);
+window.onresize = resize; resize();
 
-class Particle {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 2 + 1;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
+class Particle{
+  constructor(){
+    this.x=Math.random()*w;
+    this.y=Math.random()*h;
+    this.vx=(Math.random()-.5)*.6;
+    this.vy=(Math.random()-.5)*.6;
+    this.r=Math.random()*2+1;
   }
-  draw() {
+  move(){
+    this.x+=this.vx; this.y+=this.vy;
+    if(this.x<0||this.x>w) this.vx*=-1;
+    if(this.y<0||this.y>h) this.vy*=-1;
+  }
+}
+
+for(let i=0;i<90;i++) p.push(new Particle());
+
+function animate(){
+  ctx.clearRect(0,0,w,h);
+  p.forEach((a,i)=>{
+    a.move();
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255,0,0,0.6)";
+    ctx.arc(a.x,a.y,a.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(255,0,0,.7)";
     ctx.fill();
-  }
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-    this.draw();
-  }
-}
-
-function init() {
-  particles = [];
-  for (let i = 0; i < count; i++) {
-    particles.push(new Particle());
-  }
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => p.update());
+    for(let j=i+1;j<p.length;j++){
+      let d=Math.hypot(a.x-p[j].x,a.y-p[j].y);
+      if(d<120){
+        ctx.strokeStyle="rgba(255,0,0,.15)";
+        ctx.beginPath();
+        ctx.moveTo(a.x,a.y);
+        ctx.lineTo(p[j].x,p[j].y);
+        ctx.stroke();
+      }
+    }
+  });
   requestAnimationFrame(animate);
 }
-
-init();
 animate();
 </script>
 
 </body>
 </html>
-``
