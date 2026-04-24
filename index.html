@@ -1,283 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<meta charsettitle><meta charset="UTF-8">
 
 <style>
-:root{
-  --bg:#050505;
-  --gold:#C9A84C;
-  --red:#8B0000;
-  --white:#fff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--white);
-  font-family:'Inter';
+/* BACKGROUND */
+body {
+  color: #fff;
+  background: #000;
+  padding: 40px;
+  overflow-x: hidden;
 }
 
-/* NAV */
-nav{
-  position:fixed;
-  width:100%;
-  padding:20px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(0,0,0,0.85);
-  border-bottom:1px solid rgba(201,168,76,0.2);
-  z-index:1000;
-}
-
-.logo{
-  font-family:'Orbitron';
-  color:var(--gold);
-  letter-spacing:3px;
-}
-
-/* TOGGLE */
-.toggle-wrap{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-family:'Orbitron';
-  color:var(--gold);
-}
-
-.toggle{
-  width:60px;
-  height:28px;
-  background:#111;
-  border-radius:20px;
-  position:relative;
-  cursor:pointer;
-  border:1px solid rgba(201,168,76,0.5);
-  box-shadow:0 0 10px rgba(201,168,76,0.2);
-}
-
-.handle{
-  width:22px;
-  height:22px;
-  background:#444;
-  border-radius:50%;
-  position:absolute;
-  top:3px;
-  left:3px;
-  transition:.3s;
-}
-
-.toggle.active{
-  background:var(--gold);
-}
-
-.toggle.active .handle{
-  left:35px;
-  background:#fff;
+/* PARTICLE CANVAS */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: radial-gradient(circle at top, #1a0000, #000);
 }
 
 /* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.hero h1{
-  font-family:'Orbitron';
-  font-size:70px;
-  transition:.4s;
+.hero h1 {
+  font-size: 3.5rem;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px red;
 }
 
-.hero span{
-  color:var(--gold);
+.subtitle {
+  color: #ff2a2a;
+  font-size: 1.2rem;
+  margin-top: 12px;
 }
 
-/* LIGHT EFFECT */
-.hero.light-on h1{
-  text-shadow:
-    0 0 20px rgba(255,255,255,0.6),
-    0 0 40px rgba(255,0,0,0.5),
-    0 0 80px rgba(255,0,0,0.3);
-}
-
-/* BEAM */
-.beam{
-  position:absolute;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:300px;
-  height:0;
-  background:linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
-  opacity:0;
-  filter:blur(20px);
-  transition:.5s;
-}
-
-.hero.light-on .beam{
-  height:350px;
-  opacity:1;
-}
-
-/* FLIGHT */
-.flight{
-  position:absolute;
-  top:30%;
-  left:-100px;
-  font-size:30px;
-  opacity:0;
-}
-
-.hero.light-on .flight{
-  animation:fly 4s linear infinite;
-  opacity:1;
-}
-
-@keyframes fly{
-  0%{left:-100px;}
-  100%{left:110%;}
-}
-
-/* SECTION */
-.section{
-  padding:100px 60px;
-}
-
-.title{
-  font-family:'Orbitron';
-  color:var(--gold);
-  margin-bottom:30px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
+.location {
+  opacity: 0.8;
+  margin-top: 6px;
 }
 
 /* CARD */
-.card{
-  background:#0a0a0a;
-  border:1px solid rgba(201,168,76,0.2);
-  padding:25px;
-  border-radius:12px;
-  transition:.3s;
+.card {
+  background: linear-gradient(145deg, #0d0d0d, #000);
+  border: 1px solid #300;
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 35px;
+  box-shadow: 0 20px 40px rgba(255,0,0,0.25);
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+.card:hover {
+  transform: translateY(-12px) rotateX(3deg);
+  box-shadow: 0 45px 80px rgba(255,0,0,0.45);
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:60px;
-  border-top:1px solid rgba(201,168,76,0.2);
+h2 {
+  color: #ff3030;
+  margin-bottom: 15px;
+}
+
+h3 {
+  color: #ff5a5a;
+  margin-top: 20px;
+}
+
+.date {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+ul {
+  margin-left: 22px;
+  margin-top: 10px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* SKILL GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.grid span {
+  background: #111;
+  padding: 12px;
+  border-left: 4px solid red;
+  box-shadow: inset 0 0 10px rgba(255,0,0,0.25);
+}
+
+/* CONTACT */
+.contact {
+  text-align: center;
+}
+
+/* ANIMATION DELAYS */
+.delay1 { animation-delay: .3s; }
+.delay2 { animation-delay: .6s; }
+.delay3 { animation-delay: .9s; }
+.delay4 { animation-delay: 1.2s; }
+
+/* FADE IN */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">PORTFOLIO</div>
+<canvas id="particles"></canvas>
 
-  <div class="toggle-wrap">
-    <span>LIGHT</span>
-    <div class="toggle" id="toggle" onclick="toggleLight()">
-      <div class="handle"></div>
-    </div>
-  </div>
-</nav>
-
-<section class="hero" id="hero">
-  <div class="beam"></div>
-  <div class="flight">✈️</div>
-  <h1>SAIDA <span>VALI SHAIK</span></h1>
+<!-- HERO -->
+<section class="hero">
+  <h1>SAIDA VALI SHAIK</h1>
+  <p class="subtitle">Product Consultant | Business Analyst | Aspiring Product Manager</p>
+  <p class="location">Hyderabad, India</p>
 </section>
 
 <!-- SUMMARY -->
-<section class="section">
-  <div class="title">SUMMARY</div>
-  <div class="card">
-    Business Analyst & Product Consultant with 3+ years of experience delivering data-driven solutions across Airline, EdTech, and Energy domains.
-  </div>
+<section class="card delay1">
+  <h2>Professional Summary</h2>
+  <p>
+    Business Analyst & Product Consultant with 3+ years of experience delivering
+    data‑driven and client‑focused solutions across Airline, EdTech, and Energy domains.
+    Strong in Agile delivery, stakeholder management, and product improvement.
+  </p>
 </section>
 
 <!-- SKILLS -->
-<section class="section">
-  <div class="title">SKILLS</div>
+<section class="card delay2">
+  <h2>Core Skills</h2>
   <div class="grid">
-    <div class="card">Requirement Gathering, BRD, FRD, SRS</div>
-    <div class="card">Jira, Azure DevOps, Power BI</div>
-    <div class="card">SQL, Excel, Data Analysis</div>
-    <div class="card">Testing, UAT, Regression</div>
+    <span>Product & Business Analysis</span>
+    <span>BRD / FRD / SRS</span>
+    <span>Agile & Scrum</span>
+    <span>Jira / Confluence</span>
+    <span>Azure DevOps</span>
+    <span>Excel / SQL / Power BI</span>
+    <span>UAT & QA</span>
+    <span>Client Management</span>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section class="section">
-  <div class="title">EXPERIENCE</div>
-  <div class="grid">
-    <div class="card">
-      <b>Product Consultant – Caliber Technologies</b><br><br>
-      Managed enterprise clients, handled issue tracking, demos, and product improvements.
-    </div>
+<section class="card delay3">
+  <h2>Professional Experience</h2>
 
-    <div class="card">
-      <b>Business Analyst – Inspire Infosol</b><br><br>
-      Gathered requirements, worked on airline systems, supported UAT and reporting.
-    </div>
-  </div>
+  <h3>Caliber Technologies — Product Consultant</h3>
+  <p class="date">Nov 2025 – Present</p>
+  <ul>
+    <li>Primary client contact for EPIQ (LearnIQ module)</li>
+    <li>Handled 3 enterprise pharma clients</li>
+    <li>Tracked issues using Azure DevOps</li>
+    <li>Conducted demos, releases & patch sessions</li>
+  </ul>
+
+  <h3>Inspire Infosol — Business Analyst & QA</h3>
+  <p class="date">Jan 2023 – Jul 2025</p>
+  <ul>
+    <li>Requirements gathering & documentation</li>
+    <li>SQL & Excel data validation</li>
+    <li>UAT execution and reporting</li>
+  </ul>
 </section>
 
 <!-- PROJECTS -->
-<section class="section">
-  <div class="title">PROJECTS</div>
-  <div class="grid">
-    <div class="card">Airline Reservation System</div>
-    <div class="card">Airline Loyalty Platform</div>
-    <div class="card">Chatbot (LLM)</div>
-    <div class="card">Career Guidance Platform</div>
-    <div class="card">Solar PV Project</div>
-  </div>
+<section class="card delay4">
+  <h2>Key Projects</h2>
+  <ul>
+    <li>✈ Airline Reservation System</li>
+    <li>🎯 Loyalty & Discount Platform</li>
+    <li>🤖 NLP / LLM Chatbot</li>
+    <li>🎓 Career Guidance Platform</li>
+    <li>☀ Solar PV Delivery Project</li>
+  </ul>
 </section>
 
-<!-- EDUCATION -->
-<section class="section">
-  <div class="title">EDUCATION</div>
-  <div class="card">
-    B.Sc (Mathematics, Electronics, Computer Science)<br>
-    Andhra University — 2023
-  </div>
+<!-- CONTACT -->
+<section class="card contact delay4">
+  <h2>Contact</h2>
+  <p>📞 +91‑7569784511</p>
+  <p>📧 saidashaik1319@gmail.com</p>
 </section>
 
-<footer>
-  📞 +91-7569784511 <br><br>
-  📧 saidashaik1319@gmail.com
-</footer>
-
+<!-- PARTICLE SCRIPT -->
 <script>
-function toggleLight(){
-  const hero=document.getElementById('hero');
-  const toggle=document.getElementById('toggle');
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
 
-  hero.classList.toggle('light-on');
-  toggle.classList.toggle('active');
+let particles = [];
+const count = 90;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
+resize();
+window.addEventListener("resize", resize);
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,0,0,0.6)";
+    ctx.fill();
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    this.draw();
+  }
+}
+
+function init() {
+  particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => p.update());
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
 </script>
 
 </body>
 </html>
+``
