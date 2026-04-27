@@ -1,164 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saida Vali Shaik | Portfolio</title>
 
-<title>Saida Vali Shaik | Product Consultant Portfolio</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- ✅ GOOGLE FONTS (CORRECT WAY) -->
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&family=Abel&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-/* ================= RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
 
-/* ================= BASE ================= */
-body {
-  background: #0b0b0b;
-  color: #ffffff;
-  font-family: 'Abel', sans-serif;
-  perspective: 1200px;
-  padding: 60px 24px;
-}
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
 
-/* ================= HEADER ================= */
-.header {
-  text-align: center;
-  margin-bottom: 80px;
-}
+    header {
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+    }
 
-.header h1 {
-  font-family: 'Exo', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
 
-.header span {
-  color: #ff2a2a;
-}
+    header p {
+      margin-top: 8px;
+      color: #4b5563;
+    }
 
-.header p {
-  font-size: 1.1rem;
-  opacity: 0.85;
-}
+    section {
+      margin-bottom: 40px;
+    }
 
-/* ================= CARD LAYOUT ================= */
-.card-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-}
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      border-left: 4px solid #2563eb;
+      padding-left: 12px;
+    }
 
-/* ================= 3D CARD ================= */
-.card {
-  width: 280px;
-  height: 380px;
-  padding: 26px;
-  border-radius: 18px;
-  text-align: center;
-  transform-style: preserve-3d;
-  transform: rotateX(70deg) translateY(-180px);
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
-}
+    ul {
+      padding-left: 20px;
+    }
 
-.card:hover {
-  transform: rotateX(0deg) translateY(0);
-  box-shadow: 0 45px 90px rgba(255,0,0,0.45);
-}
+    li {
+      margin-bottom: 8px;
+    }
 
-/* ================= CARD COLORS ================= */
-.card-product {
-  background: linear-gradient(135deg, #ff512f, #dd2476);
-}
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
 
-.card-analyst {
-  background: linear-gradient(135deg, #5f2c82, #49a09d);
-}
+    .skill-box {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
 
-.card-projects {
-  background: linear-gradient(135deg, #b31217, #e52d27);
-}
+    .job {
+      margin-bottom: 24px;
+    }
 
-/* ================= CARD CONTENT ================= */
-.card h2 {
-  font-family: 'Exo', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 14px;
-}
+    .job h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
 
-.card p {
-  font-size: 1rem;
-  line-height: 1.55;
-  opacity: 0.95;
-}
+    .job span {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  body {
-    padding: 40px 16px;
-  }
-  .card {
-    width: 100%;
-    max-width: 340px;
-  }
-}
-</style>
+    footer {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 2px solid #e5e7eb;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-<header class="header">
-  <h1><span>SAIDA</span> VALI SHAIK</h1>
-  <p>
-    Product Consultant · Business Analyst · Aspiring Product Manager<br>
-    Hyderabad, India
-  </p>
-</header>
+  <div class="container">
 
-<!-- ================= CARDS ================= -->
-<section class="card-wrapper">
+    <!-- HEADER -->
+    <header>
+      <h1>Saida Vali Shaik</h1>
+      <p>
+        Hyderabad, India · +91‑7569784511 ·
+        <a href="mailto:saidashaik1319@gmail.com">saidashaik1319@gmail.com</a>
+      </p>
+    </header>
 
-  <!-- PRODUCT CONSULTANT -->
-  <div class="card card-product">
-    <h2>Product Consultant</h2>
-    <p>
-      3+ years of experience supporting enterprise platforms across
-      pharmaceutical, airline, and EdTech domains. Acted as the
-      primary client contact, handled issue prioritization, release
-      walkthroughs, and post‑deployment adoption.
-    </p>
+    <!-- SUMMARY -->
+    <section>
+      <h2>Professional Summary</h2>
+      <p>
+        Business Analyst & Product Consultant with 3+ years of experience delivering
+        data‑driven, client‑focused solutions across Airline, EdTech, and Energy domains.
+        Proven in requirement gathering, stakeholder collaboration, Agile delivery,
+        and continuous product improvement. Aspiring Product Manager with strong
+        analytical and problem‑solving skills.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <h2>Core Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <strong>Business & Product Analysis</strong><br>
+          Requirement Gathering, BRD, FRD, SRS, User Stories, Wireframing, UAT Support
+        </div>
+        <div class="skill-box">
+          <strong>Product & Client Handling</strong><br>
+          Client Communication, Issue Analysis, Prioritization, Root Cause Analysis
+        </div>
+        <div class="skill-box">
+          <strong>Project Coordination</strong><br>
+          Sprint Planning, Risk Tracking, Stakeholder Management, Status Reporting
+        </div>
+        <div class="skill-box">
+          <strong>Tools & Technologies</strong><br>
+          Jira, Confluence, Azure DevOps, Excel, Power BI, Tableau, Figma, Postman
+        </div>
+        <div class="skill-box">
+          <strong>Data & QA</strong><br>
+          Excel (Pivots, Lookups), SQL (Basics), Test Cases, Defect Tracking, UAT
+        </div>
+        <div class="skill-box">
+          <strong>Methodologies</strong><br>
+          Agile, Scrum, SDLC
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <h2>Professional Experience</h2>
+
+      <div class="job">
+        <h3>Product Consultant – Caliber Technologies</h3>
+        <span>Nov 2025 – Present | Hyderabad</span>
+        <ul>
+          <li>Supported enterprise pharma clients on the EPIQ (LearnIQ) platform.</li>
+          <li>Managed 3 client projects as the primary point of contact.</li>
+          <li>Analyzed and prioritized issues, ensuring quick turnaround for critical defects.</li>
+          <li>Tracked defects and enhancements using Azure DevOps.</li>
+          <li>Conducted product demos, release walkthroughs, and post‑deployment sessions.</li>
+          <li>Assisted with demo environment setup using IIS and SSMS.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Business Analyst & Quality Analyst – Inspire Infosol Pvt. Ltd.</h3>
+        <span>Jan 2023 – Jul 2025 | Hyderabad</span>
+        <ul>
+          <li>Acted as a bridge between business stakeholders and development teams.</li>
+          <li>Created BRDs, FRDs, SRS, and user stories using Jira and Confluence.</li>
+          <li>Performed SQL and Excel‑based data validation for airline applications.</li>
+          <li>Supported UAT execution, defect tracking, and client sign‑off.</li>
+          <li>Designed workflows and reports for management decision‑making.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <h2>Key Projects</h2>
+      <ul>
+        <li><strong>Airline Reservation System:</strong> Managed user stories and conducted UAT for booking and cancellation flows.</li>
+        <li><strong>Airline Loyalty & Discount Platform:</strong> Implemented discount logic and improved user adoption.</li>
+        <li><strong>Airline Chatbot (NLP/LLM):</strong> Designed conversational flows and validated responses.</li>
+        <li><strong>Career Guidance Platform (EdTech):</strong> Built assessment dashboards and counsellor workflows.</li>
+        <li><strong>Test Management Suite:</strong> Created sprint‑based test case management and reports.</li>
+        <li><strong>Solar PV Delivery Project:</strong> Validated delivery models and authored functional test cases.</li>
+      </ul>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <h2>Education</h2>
+      <p>
+        <strong>Bachelor of Science (Mathematics, Electronics, Computer Science)</strong><br>
+        VDA Degree College, Andhra University — 2023
+      </p>
+    </section>
+
+    <!-- ADDITIONAL -->
+    <section>
+      <h2>Additional Information</h2>
+      <p>
+        Strong interest in Product Management, analytics, and data‑driven
+        decision‑making.
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Saida Vali Shaik
+    </footer>
+
   </div>
-
-  <!-- BUSINESS ANALYST -->
-  <div class="card card-analyst">
-    <h2>Business Analyst</h2>
-    <p>
-      Strong expertise in requirement gathering, BRD/FRD/SRS creation,
-      user stories, and Agile delivery. Bridged business and technical
-      teams to ensure clarity, quality, and on‑time delivery.
-    </p>
-  </div>
-
-  <!-- PROJECTS -->
-  <div class="card card-projects">
-    <h2>Key Projects</h2>
-    <p>
-      Airline Reservation System, Loyalty & Discount Platform,
-      NLP/LLM‑based Airline Chatbot, Career Guidance EdTech Platform,
-      and Solar PV Delivery Project.
-    </p>
-  </div>
-
-</section>
 
 </body>
 </html>
