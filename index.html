@@ -1,256 +1,259 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Settings, FileText, Folder, PlusCircle } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Builder</title>
 
-
-/**
- * Portfolio Builder – Clean, Professional Version
- * - Left sidebar navigation
- * - Settings: theme, color, font
- * - Resume: full editable portfolio content + download
- * - Portfolios: create, save, and load multiple portfolios by name
- */
-
-
-export default function PortfolioBuilder() {
-  const [active, setActive] = useState("settings");
-
-  /* ================= THEME / STYLE ================= */
-  const [theme, setTheme] = useState("light");
-  const [primaryColor, setPrimaryColor] = useState("blue");
-  const [font, setFont] = useState("font-sans");
-
-  const colorMap = {
-    blue: "text-blue-600 border-blue-600",
-    emerald: "text-emerald-600 border-emerald-600",
-    rose: "text-rose-600 border-rose-600",
-  };
-  /* ================= RESUME STATE ================= */
-  const [resume, setResume] = useState({
-    name: "Saida Vali Shaik",
-    summary:
-      "Business Analyst & Product Consultant with 3+ years of experience delivering data-driven, client-focused solutions across Airline, EdTech, and Energy domains.",
-    skills:
-      "Requirement Gathering, BRD/FRD/SRS, User Stories, Jira, Azure DevOps, Agile, SQL, Excel",
-    experience:
-      "Product Consultant at Caliber Technologies (Nov 2025 – Present)
-Business Analyst & QA at Inspire Infosol (Jan 2023 – Jul 2025)",
-    projects:
-      "Airline Reservation System, Airline Loyalty Platform, NLP/LLM Chatbot, Career Guidance Platform, Solar PV Delivery",
-    education:
-      "B.Sc (Mathematics, Electronics, Computer Science) – Andhra University, 2023",
-  });
-  /* ================= PORTFOLIOS ================= */
-  const [portfolioName, setPortfolioName] = useState("");
-  const [portfolios, setPortfolios] = useState([]);
-
-  const savePortfolio = () => {
-    if (!portfolioName) return;
-    setPortfolios([
-      ...portfolios,
-      {
-        id: Date.now(),
-        portfolioName,
-        resume,
-        theme,
-        primaryColor,
-        font,
-      },
-    ]);
-    setPortfolioName("");
-  };
-
-  const loadPortfolio = (p) => {
-    setResume(p.resume);
-    setTheme(p.theme);
-    setPrimaryColor(p.primaryColor);
-    setFont(p.font);
-    setActive("resume");
-  };
-
-
-  return (
-    <div
-      className={`min-h-screen flex ${font} ${
-        theme === "dark"
-          ? "bg-slate-900 text-slate-100"
-          : "bg-slate-100 text-slate-900"
-      }`}
-    >
-      {/* ================= SIDEBAR ================= */}
-      <aside className="w-64 bg-slate-800 text-white p-5 space-y-4">
-        <h2 className="text-xl font-bold">Portfolio Builder</h2>
-
-        <Button
-          variant={active === "settings" ? "secondary" : "ghost"}
-          className="w-full justify-start"
-          onClick={() => setActive("settings")}
-        >
-          <Settings className="mr-2" size={18} /> Settings
-        </Button>
-
-        <Button
-          variant={active === "resume" ? "secondary" : "ghost"}
-          className="w-full justify-start"
-          onClick={() => setActive("resume")}
-        >
-          <FileText className="mr-2" size={18} /> Resume
-        </Button>
-
-        <Button
-          variant={active === "portfolios" ? "secondary" : "ghost"}
-          className="w-full justify-start"
-          onClick={() => setActive("portfolios")}
-        >
-          <Folder className="mr-2" size={18} /> Portfolios
-        </Button>
-      </aside>
-
-      {/* ================= MAIN ================= */}
-      <main className="flex-1 p-8 space-y-6">
-        {/* SETTINGS */}
-        {active === "settings" && (
-          <Card>
-            <CardContent className="space-y-6">
-              <h3 className="text-xl font-semibold">Appearance Settings</h3>
-
-              <div>
-                <p className="font-medium mb-2">Theme</p>
-                <div className="flex gap-3">
-                  <Button onClick={() => setTheme("light")}>Light</Button>
-                  <Button onClick={() => setTheme("dark")}>Dark</Button>
-                </div>
-              </div>
-
-              <div>
-                <p className="font-medium mb-2">Primary Color</p>
-                <div className="flex gap-3">
-                  <Button className="bg-blue-600" onClick={() => setPrimaryColor("blue")}>
-                    Blue
-                  </Button>
-                  <Button
-                    className="bg-emerald-600"
-                    onClick={() => setPrimaryColor("emerald")}
-                  >
-                    Green
-                  </Button>
-                  <Button className="bg-rose-600" onClick={() => setPrimaryColor("rose")}>
-                    Red
-                  </Button>
-                </div>
-              </div>
-
-              <div>
-                <p className="font-medium mb-2">Font</p>
-                <div className="flex gap-3">
-                  <Button onClick={() => setFont("font-sans")}>Sans</Button>
-                  <Button onClick={() => setFont("font-serif")}>Serif</Button>
-                  <Button onClick={() => setFont("font-mono")}>Mono</Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* RESUME */}
-        {active === "resume" && (
-          <Card>
-            <CardContent className="space-y-4">
-              <h3 className="text-xl font-semibold">Edit Resume</h3>
-
-              <Input
-                value={resume.name}
-                onChange={(e) => setResume({ ...resume, name: e.target.value })}
-                placeholder="Full Name"
-              />
-              <Textarea
-                value={resume.summary}
-                onChange={(e) => setResume({ ...resume, summary: e.target.value })}
-                rows={4}
-                placeholder="Professional Summary"
-              />
-              <Textarea
-                value={resume.skills}
-                onChange={(e) => setResume({ ...resume, skills: e.target.value })}
-                rows={3}
-                placeholder="Skills"
-              />
-              <Textarea
-                value={resume.experience}
-                onChange={(e) => setResume({ ...resume, experience: e.target.value })}
-                rows={4}
-                placeholder="Experience"
-              />
-              <Textarea
-                value={resume.projects}
-                onChange={(e) => setResume({ ...resume, projects: e.target.value })}
-                rows={3}
-                placeholder="Projects"
-              />
-              <Textarea
-                value={resume.education}
-                onChange={(e) => setResume({ ...resume, education: e.target.value })}
-                rows={2}
-                placeholder="Education"
-              />
-              <Button onClick={() => window.print()}>Download Resume (PDF)</Button>
-
-
-              {/* PREVIEW */}
-              <div className="mt-6 p-6 rounded border bg-white text-black space-y-2">
-                <h2 className={`text-2xl font-bold ${colorMap[primaryColor]}`}>
-                  {resume.name}
-                </h2>
-                <p>{resume.summary}</p>
-                <p><strong>Skills:</strong> {resume.skills}</p>
-                <p><strong>Experience:</strong> {resume.experience}</p>
-                <p><strong>Projects:</strong> {resume.projects}</p>
-                <p><strong>Education:</strong> {resume.education}</p>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* PORTFOLIOS */}
-        {active === "portfolios" && (
-          <Card>
-            <CardContent className="space-y-4">
-              <h3 className="text-xl font-semibold">Saved Portfolios</h3>
-
-              <div className="flex gap-2">
-                <Input
-                  value={portfolioName}
-                  onChange={(e) => setPortfolioName(e.target.value)}
-                  placeholder="Portfolio Name"
-                />
-                <Button onClick={savePortfolio}>
-                  <PlusCircle className="mr-1" size={16} /> Save
-                </Button>
-              </div>
-
-              {portfolios.length === 0 ? (
-                <p className="text-sm opacity-70">No portfolios saved yet.</p>
-              ) : (
-                <ul className="space-y-2">
-                  {portfolios.map((p) => (
-                    <li
-                      key={p.id}
-                      className="border p-3 rounded cursor-pointer hover:bg-slate-100"
-                      onClick={() => loadPortfolio(p)}
-                    >
-                      <strong>{p.portfolioName}</strong>
-                      <div className="text-sm opacity-80">{p.resume.name}</div>
-                    </li>
-                  ))
-                </ul>
-              )}
-            </CardContent>
-          </Card>
-        )}
-      </main>
-    </div>
-  );
+<style>
+:root {
+  --bg-light: #f8fafc;
+  --bg-dark: #0f172a;
+  --text-light: #0f172a;
+  --text-dark: #f8fafc;
+  --primary: #2563eb;
+  --card: #ffffff;
 }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar button.active {
+  background: rgba(255,255,255,0.15);
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+.card {
+  background: var(--card);
+  color: #0f172a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+body.dark .card {
+  background: #020617;
+  color: white;
+}
+
+input, textarea, select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+button.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.preview h2 {
+  color: var(--primary);
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Portfolio Builder</h2>
+    <button onclick="showSection('settings')" class="active">⚙ Settings</button>
+    <button onclick="showSection('resume')">📄 Resume</button>
+    <button onclick="showSection('portfolios')">📁 Portfolios</button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- SETTINGS -->
+    <div id="settings" class="card">
+      <h3>Appearance Settings</h3>
+
+      <label>Theme</label>
+      <select onchange="setTheme(this.value)">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+
+      <label>Primary Color</label>
+      <select onchange="setColor(this.value)">
+        <option value="#2563eb">Blue</option>
+        <option value="#059669">Green</option>
+        <option value="#e11d48">Red</option>
+      </select>
+
+      <label>Font</label>
+      <select onchange="setFont(this.value)">
+        <option value="system-ui">Default</option>
+        <option value="serif">Serif</option>
+        <option value="monospace">Mono</option>
+      </select>
+    </div>
+
+    <!-- RESUME -->
+    <div id="resume" class="card" style="display:none">
+      <h3>Edit Resume</h3>
+
+      <input id="name" placeholder="Full Name" />
+      <textarea id="summary" placeholder="Professional Summary"></textarea>
+      <textarea id="skills" placeholder="Skills"></textarea>
+      <textarea id="experience" placeholder="Experience"></textarea>
+      <textarea id="projects" placeholder="Projects"></textarea>
+      <textarea id="education" placeholder="Education"></textarea>
+
+      <button class="primary" onclick="downloadResume()">Download Resume (PDF)</button>
+
+      <div class="preview">
+        <h2 id="pName"></h2>
+        <p id="pSummary"></p>
+        <p><b>Skills:</b> <span id="pSkills"></span></p>
+        <p><b>Experience:</b> <span id="pExperience"></span></p>
+        <p><b>Projects:</b> <span id="pProjects"></span></p>
+        <p><b>Education:</b> <span id="pEducation"></span></p>
+      </div>
+    </div>
+
+    <!-- PORTFOLIOS -->
+    <div id="portfolios" class="card" style="display:none">
+      <h3>Saved Portfolios</h3>
+
+      <input id="portfolioName" placeholder="Portfolio Name" />
+      <button class="primary" onclick="savePortfolio()">Save Portfolio</button>
+
+      <ul id="portfolioList"></ul>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let current = "settings";
+let portfolios = JSON.parse(localStorage.getItem("portfolios") || "[]");
+
+function showSection(id) {
+  document.getElementById(current).style.display = "none";
+  document.getElementById(id).style.display = "block";
+  current = id;
+}
+
+function setTheme(t) {
+  document.body.className = t === "dark" ? "dark" : "";
+}
+
+function setColor(c) {
+  document.documentElement.style.setProperty("--primary", c);
+}
+
+function setFont(f) {
+  document.body.style.fontFamily = f;
+}
+
+function updatePreview() {
+  pName.textContent = name.value;
+  pSummary.textContent = summary.value;
+  pSkills.textContent = skills.value;
+  pExperience.textContent = experience.value;
+  pProjects.textContent = projects.value;
+  pEducation.textContent = education.value;
+}
+
+document.querySelectorAll("input, textarea").forEach(e =>
+  e.addEventListener("input", updatePreview)
+);
+
+function downloadResume() {
+  window.print();
+}
+
+function savePortfolio() {
+  const p = {
+    name: portfolioName.value,
+    data: {
+      name: name.value,
+      summary: summary.value,
+      skills: skills.value,
+      experience: experience.value,
+      projects: projects.value,
+      education: education.value
+    }
+  };
+  portfolios.push(p);
+  localStorage.setItem("portfolios", JSON.stringify(portfolios));
+  renderPortfolios();
+}
+
+function renderPortfolios() {
+  portfolioList.innerHTML = "";
+  portfolios.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = p.name;
+    li.onclick = () => loadPortfolio(p);
+    portfolioList.appendChild(li);
+  });
+}
+
+function loadPortfolio(p) {
+  Object.assign(window, p.data);
+  name.value = p.data.name;
+  summary.value = p.data.summary;
+  skills.value = p.data.skills;
+  experience.value = p.data.experience;
+  projects.value = p.data.projects;
+  education.value = p.data.education;
+  updatePreview();
+  showSection("resume");
+}
+
+renderPortfolios();
+updatePreview();
+</script>
+
+</body>
+</html>
