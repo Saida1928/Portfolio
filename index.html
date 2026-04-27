@@ -3,81 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Cards</title>
 
-<title>Saida Vali Shaik | Portfolio</title>
-
-<!-- GOOGLE FONTS -->
+<!-- ✅ GOOGLE FONTS (FIXED) -->
 <link href="https://fonts.googleapis.com/css?family=Exo:700|Abel&display=swap" rel="stylesheet">
 
 <style>
-/* ================= RESET ================= */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   font-family: 'Abel', sans-serif;
   perspective: 1200px;
-  overflow-x: hidden;
   padding: 40px 20px;
 }
 
-/* ================= PARTICLES ================= */
-#particles {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  background: radial-gradient(circle at top, #1a0000, #000);
-}
-
-/* ================= BATMAN LOGO ================= */
-.batman {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: -2;
-  opacity: 0.05;
-  animation: float 8s ease-in-out infinite;
-}
-
-.batman-shape {
-  width: 320px;
-  height: 180px;
-  background: black;
-  border-radius: 50%;
-  clip-path: polygon(
-    0% 50%, 10% 35%, 20% 45%, 30% 40%, 40% 50%,
-    50% 35%, 60% 50%, 70% 40%, 80% 45%, 90% 35%, 100% 50%,
-    85% 70%, 15% 70%
-  );
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(-10px); }
-  50% { transform: translateY(10px); }
-}
-
-/* ================= TITLE ================= */
+/* TITLE */
 .title {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 }
 
 .title h1 {
   font-family: 'Exo', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  text-shadow: 0 0 25px red;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-shadow: 0 0 15px red;
 }
 
-.red { color: #ff2a2a; }
-
-/* ================= CARD LAYOUT ================= */
+/* CONTAINER */
 .card-container {
   display: flex;
   justify-content: center;
@@ -85,7 +45,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* ================= 3D CARD ================= */
+/* CARD BASE (YOUR STYLE, FIXED) */
 .card {
   width: 260px;
   height: 360px;
@@ -108,7 +68,7 @@ body {
 .card2 { background: linear-gradient(135deg,#6a11cb,#2575fc); }
 .card3 { background: linear-gradient(135deg,#ff4e50,#b31217); }
 
-/* CARD TEXT */
+/* TEXT */
 .card h3 {
   font-size: 1.6rem;
   margin-bottom: 14px;
@@ -119,15 +79,51 @@ body {
   line-height: 1.5;
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  body { padding: 20px; }
-  .card { width: 100%; max-width: 320px; }
+  .card {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUNDS -->
-<canvas id="particles"></canvas>
+<!-- TITLE -->
+<div class="title">
+  <h1>Product Portfolio</h1>
+</div>
+
+<!-- CARDS -->
+<div class="card-container">
+
+  <div class="card card1">
+    <h3>Product Consultant</h3>
+    <p>
+      Led enterprise client interactions, managed issue
+      prioritization, and ensured smooth product adoption.
+    </p>
+  </div>
+
+  <div class="card card2">
+    <h3>Business Analyst</h3>
+    <p>
+      Translated business requirements into user stories,
+      functional specs, and Agile deliverables.
+    </p>
+  </div>
+
+  <div class="card card3">
+    <h3>Key Projects</h3>
+    <p>
+      Airline systems, LLM chatbots, EdTech platforms,
+      and energy delivery solutions.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
