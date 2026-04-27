@@ -165,7 +165,12 @@ button.primary {
       <h3>Saved Portfolios</h3>
 
       <input id="portfolioName" placeholder="Portfolio Name" />
-      <button class="primary" onclick="savePortfolio()">Save Portfolio</button>
+      <button class="primary" onclick="savePortfolio()">Save Current Portfolio</button>
+
+      <hr>
+
+      <h4>Upload Resume (TXT)</h4>
+      <input type="file" accept=".txt" onchange="uploadResume(this)" />
 
       <ul id="portfolioList"></ul>
     </div>
@@ -214,7 +219,7 @@ function downloadResume() {
 
 function savePortfolio() {
   const p = {
-    name: portfolioName.value,
+    name: portfolioName.value || "Untitled Portfolio",
     data: {
       name: name.value,
       summary: summary.value,
@@ -229,6 +234,28 @@ function savePortfolio() {
   renderPortfolios();
 }
 
+function uploadResume(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const text = e.target.result;
+
+    name.value = text.split("\n")[0] || "";
+    summary.value = text.slice(0, 300);
+    skills.value = text;
+    experience.value = text;
+    projects.value = "";
+    education.value = "";
+
+    updatePreview();
+    portfolioName.value = file.name.replace(".txt", "");
+    showSection("resume");
+  };
+  reader.readAsText(file);
+}
+
 function renderPortfolios() {
   portfolioList.innerHTML = "";
   portfolios.forEach(p => {
@@ -240,7 +267,6 @@ function renderPortfolios() {
 }
 
 function loadPortfolio(p) {
-  Object.assign(window, p.data);
   name.value = p.data.name;
   summary.value = p.data.summary;
   skills.value = p.data.skills;
