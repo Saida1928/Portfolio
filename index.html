@@ -1,89 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Cards</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ✅ GOOGLE FONTS (FIXED) -->
-<link href="https://fonts.googleapis.com/css?family=Exo:700|Abel&display=swap" rel="stylesheet">
+<title>Saida Vali Shaik | Product Consultant Portfolio</title>
+
+<!-- ✅ GOOGLE FONTS (CORRECT WAY) -->
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&family=Abel&display=swap" rel="stylesheet">
 
 <style>
-/* RESET */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY */
+/* ================= BASE ================= */
 body {
-  background: #000;
-  color: #fff;
+  background: #0b0b0b;
+  color: #ffffff;
   font-family: 'Abel', sans-serif;
   perspective: 1200px;
-  padding: 40px 20px;
+  padding: 60px 24px;
 }
 
-/* TITLE */
-.title {
+/* ================= HEADER ================= */
+.header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
-.title h1 {
+.header h1 {
   font-family: 'Exo', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  text-shadow: 0 0 15px red;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
 }
 
-/* CONTAINER */
-.card-container {
+.header span {
+  color: #ff2a2a;
+}
+
+.header p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* ================= CARD LAYOUT ================= */
+.card-wrapper {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 48px;
   flex-wrap: wrap;
 }
 
-/* CARD BASE (YOUR STYLE, FIXED) */
+/* ================= 3D CARD ================= */
 .card {
-  width: 260px;
-  height: 360px;
-  padding: 22px;
+  width: 280px;
+  height: 380px;
+  padding: 26px;
+  border-radius: 18px;
   text-align: center;
-  border-radius: 20px;
   transform-style: preserve-3d;
-  transform: rotateX(75deg) translateY(-200px);
-  transition: 0.6s ease;
-  box-shadow: 0 25px 60px rgba(255,0,0,.35);
+  transform: rotateX(70deg) translateY(-180px);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
 }
 
 .card:hover {
   transform: rotateX(0deg) translateY(0);
-  box-shadow: 0 45px 90px rgba(255,0,0,.6);
+  box-shadow: 0 45px 90px rgba(255,0,0,0.45);
 }
 
-/* CARD COLORS */
-.card1 { background: linear-gradient(135deg,#ff512f,#dd2476); }
-.card2 { background: linear-gradient(135deg,#6a11cb,#2575fc); }
-.card3 { background: linear-gradient(135deg,#ff4e50,#b31217); }
+/* ================= CARD COLORS ================= */
+.card-product {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+}
 
-/* TEXT */
-.card h3 {
-  font-size: 1.6rem;
+.card-analyst {
+  background: linear-gradient(135deg, #5f2c82, #49a09d);
+}
+
+.card-projects {
+  background: linear-gradient(135deg, #b31217, #e52d27);
+}
+
+/* ================= CARD CONTENT ================= */
+.card h2 {
+  font-family: 'Exo', sans-serif;
+  font-size: 1.5rem;
   margin-bottom: 14px;
 }
 
 .card p {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.55;
+  opacity: 0.95;
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
+  body {
+    padding: 40px 16px;
+  }
   .card {
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
   }
 }
 </style>
@@ -91,39 +115,50 @@ body {
 
 <body>
 
-<!-- TITLE -->
-<div class="title">
-  <h1>Product Portfolio</h1>
-</div>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <h1><span>SAIDA</span> VALI SHAIK</h1>
+  <p>
+    Product Consultant · Business Analyst · Aspiring Product Manager<br>
+    Hyderabad, India
+  </p>
+</header>
 
-<!-- CARDS -->
-<div class="card-container">
+<!-- ================= CARDS ================= -->
+<section class="card-wrapper">
 
-  <div class="card card1">
-    <h3>Product Consultant</h3>
+  <!-- PRODUCT CONSULTANT -->
+  <div class="card card-product">
+    <h2>Product Consultant</h2>
     <p>
-      Led enterprise client interactions, managed issue
-      prioritization, and ensured smooth product adoption.
+      3+ years of experience supporting enterprise platforms across
+      pharmaceutical, airline, and EdTech domains. Acted as the
+      primary client contact, handled issue prioritization, release
+      walkthroughs, and post‑deployment adoption.
     </p>
   </div>
 
-  <div class="card card2">
-    <h3>Business Analyst</h3>
+  <!-- BUSINESS ANALYST -->
+  <div class="card card-analyst">
+    <h2>Business Analyst</h2>
     <p>
-      Translated business requirements into user stories,
-      functional specs, and Agile deliverables.
+      Strong expertise in requirement gathering, BRD/FRD/SRS creation,
+      user stories, and Agile delivery. Bridged business and technical
+      teams to ensure clarity, quality, and on‑time delivery.
     </p>
   </div>
 
-  <div class="card card3">
-    <h3>Key Projects</h3>
+  <!-- PROJECTS -->
+  <div class="card card-projects">
+    <h2>Key Projects</h2>
     <p>
-      Airline systems, LLM chatbots, EdTech platforms,
-      and energy delivery solutions.
+      Airline Reservation System, Loyalty & Discount Platform,
+      NLP/LLM‑based Airline Chatbot, Career Guidance EdTech Platform,
+      and Solar PV Delivery Project.
     </p>
   </div>
 
-</div>
+</section>
 
 </body>
 </html>
