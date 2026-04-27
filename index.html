@@ -1,227 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saida Vali Shaik | Portfolio</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Settings, FileText, FolderPlus } from "lucide-react";
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+export default function PortfolioBuilder() {
+  const [active, setActive] = useState("resume");
+  const [theme, setTheme] = useState("light");
+  const [font, setFont] = useState("font-sans");
+  const [name, setName] = useState("Saida Vali Shaik");
+  const [summary, setSummary] = useState(
+    "Business Analyst & Product Consultant with 3+ years of experience across Airline, EdTech, and Energy domains."
+  );
+  const [portfolios, setPortfolios] = useState([]);
+  const [portfolioName, setPortfolioName] = useState("");
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
-    }
+  const savePortfolio = () => {
+    if (!portfolioName) return;
+    setPortfolios([...portfolios, { portfolioName, name, summary }]);
+    setPortfolioName("");
+  };
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+  return (
+    <div className={`${theme === "dark" ? "dark bg-gray-900 text-white" : "bg-gray-100 text-gray-900"} min-h-screen flex ${font}`}>
+      {/* Sidebar */}
+      <aside className="w-64 bg-gray-800 text-white p-4 space-y-4">
+        <h2 className="text-xl font-bold mb-4">Portfolio Builder</h2>
+        <Button variant={active === "settings" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActive("settings")}>
+          <Settings className="mr-2" /> Settings
+        </Button>
+        <Button variant={active === "resume" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActive("resume")}>
+          <FileText className="mr-2" /> Resume
+        </Button>
+        <Button variant={active === "portfolios" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActive("portfolios")}>
+          <FolderPlus className="mr-2" /> Portfolios
+        </Button>
+      </aside>
 
-    header {
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 20px;
-      margin-bottom: 40px;
-    }
+      {/* Main Content */}
+      <main className="flex-1 p-8">
+        {active === "settings" && (
+          <Card>
+            <CardContent className="space-y-4">
+              <h3 className="text-xl font-semibold">Theme Settings</h3>
+              <div className="flex gap-4">
+                <Button onClick={() => setTheme("light")}>Light</Button>
+                <Button onClick={() => setTheme("dark")}>Dark</Button>
+              </div>
+              <h3 className="text-xl font-semibold mt-4">Font</h3>
+              <div className="flex gap-4">
+                <Button onClick={() => setFont("font-sans")}>Sans</Button>
+                <Button onClick={() => setFont("font-serif")}>Serif</Button>
+                <Button onClick={() => setFont("font-mono")}>Mono</Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
+        {active === "resume" && (
+          <Card>
+            <CardContent className="space-y-4">
+              <h3 className="text-xl font-semibold">Edit Resume</h3>
+              <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
+              <Textarea value={summary} onChange={(e) => setSummary(e.target.value)} rows={5} />
+              <Button onClick={() => window.print()}>Download Resume (PDF)</Button>
+              <div className="mt-6 p-4 border rounded bg-white text-black">
+                <h2 className="text-2xl font-bold">{name}</h2>
+                <p className="mt-2">{summary}</p>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
-    header p {
-      margin-top: 8px;
-      color: #4b5563;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      border-left: 4px solid #2563eb;
-      padding-left: 12px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-    }
-
-    .skill-box {
-      background: #ffffff;
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .job {
-      margin-bottom: 24px;
-    }
-
-    .job h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .job span {
-      font-size: 0.9rem;
-      color: #6b7280;
-    }
-
-    footer {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 2px solid #e5e7eb;
-      color: #6b7280;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-
-    <!-- HEADER -->
-    <header>
-      <h1>Saida Vali Shaik</h1>
-      <p>
-        Hyderabad, India · +91‑7569784511 ·
-        <a href="mailto:saidashaik1319@gmail.com">saidashaik1319@gmail.com</a>
-      </p>
-    </header>
-
-    <!-- SUMMARY -->
-    <section>
-      <h2>Professional Summary</h2>
-      <p>
-        Business Analyst & Product Consultant with 3+ years of experience delivering
-        data‑driven, client‑focused solutions across Airline, EdTech, and Energy domains.
-        Proven in requirement gathering, stakeholder collaboration, Agile delivery,
-        and continuous product improvement. Aspiring Product Manager with strong
-        analytical and problem‑solving skills.
-      </p>
-    </section>
-
-    <!-- SKILLS -->
-    <section>
-      <h2>Core Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-box">
-          <strong>Business & Product Analysis</strong><br>
-          Requirement Gathering, BRD, FRD, SRS, User Stories, Wireframing, UAT Support
-        </div>
-        <div class="skill-box">
-          <strong>Product & Client Handling</strong><br>
-          Client Communication, Issue Analysis, Prioritization, Root Cause Analysis
-        </div>
-        <div class="skill-box">
-          <strong>Project Coordination</strong><br>
-          Sprint Planning, Risk Tracking, Stakeholder Management, Status Reporting
-        </div>
-        <div class="skill-box">
-          <strong>Tools & Technologies</strong><br>
-          Jira, Confluence, Azure DevOps, Excel, Power BI, Tableau, Figma, Postman
-        </div>
-        <div class="skill-box">
-          <strong>Data & QA</strong><br>
-          Excel (Pivots, Lookups), SQL (Basics), Test Cases, Defect Tracking, UAT
-        </div>
-        <div class="skill-box">
-          <strong>Methodologies</strong><br>
-          Agile, Scrum, SDLC
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section>
-      <h2>Professional Experience</h2>
-
-      <div class="job">
-        <h3>Product Consultant – Caliber Technologies</h3>
-        <span>Nov 2025 – Present | Hyderabad</span>
-        <ul>
-          <li>Supported enterprise pharma clients on the EPIQ (LearnIQ) platform.</li>
-          <li>Managed 3 client projects as the primary point of contact.</li>
-          <li>Analyzed and prioritized issues, ensuring quick turnaround for critical defects.</li>
-          <li>Tracked defects and enhancements using Azure DevOps.</li>
-          <li>Conducted product demos, release walkthroughs, and post‑deployment sessions.</li>
-          <li>Assisted with demo environment setup using IIS and SSMS.</li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <h3>Business Analyst & Quality Analyst – Inspire Infosol Pvt. Ltd.</h3>
-        <span>Jan 2023 – Jul 2025 | Hyderabad</span>
-        <ul>
-          <li>Acted as a bridge between business stakeholders and development teams.</li>
-          <li>Created BRDs, FRDs, SRS, and user stories using Jira and Confluence.</li>
-          <li>Performed SQL and Excel‑based data validation for airline applications.</li>
-          <li>Supported UAT execution, defect tracking, and client sign‑off.</li>
-          <li>Designed workflows and reports for management decision‑making.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section>
-      <h2>Key Projects</h2>
-      <ul>
-        <li><strong>Airline Reservation System:</strong> Managed user stories and conducted UAT for booking and cancellation flows.</li>
-        <li><strong>Airline Loyalty & Discount Platform:</strong> Implemented discount logic and improved user adoption.</li>
-        <li><strong>Airline Chatbot (NLP/LLM):</strong> Designed conversational flows and validated responses.</li>
-        <li><strong>Career Guidance Platform (EdTech):</strong> Built assessment dashboards and counsellor workflows.</li>
-        <li><strong>Test Management Suite:</strong> Created sprint‑based test case management and reports.</li>
-        <li><strong>Solar PV Delivery Project:</strong> Validated delivery models and authored functional test cases.</li>
-      </ul>
-    </section>
-
-    <!-- EDUCATION -->
-    <section>
-      <h2>Education</h2>
-      <p>
-        <strong>Bachelor of Science (Mathematics, Electronics, Computer Science)</strong><br>
-        VDA Degree College, Andhra University — 2023
-      </p>
-    </section>
-
-    <!-- ADDITIONAL -->
-    <section>
-      <h2>Additional Information</h2>
-      <p>
-        Strong interest in Product Management, analytics, and data‑driven
-        decision‑making.
-      </p>
-    </section>
-
-    <footer>
-      © 2026 Saida Vali Shaik
-    </footer>
-
-  </div>
-
-</body>
-</html>
+        {active === "portfolios" && (
+          <Card>
+            <CardContent className="space-y-4">
+              <h3 className="text-xl font-semibold">Saved Portfolios</h3>
+              <div className="flex gap-2">
+                <Input value={portfolioName} onChange={(e) => setPortfolioName(e.target.value)} placeholder="Portfolio Name" />
+                <Button onClick={savePortfolio}>Save</Button>
+              </div>
+              <ul className="list-disc pl-6">
+                {portfolios.map((p, i) => (
+                  <li key={i}>
+                    <strong>{p.portfolioName}</strong> – {p.name}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+      </main>
+    </div>
+  );
+}
