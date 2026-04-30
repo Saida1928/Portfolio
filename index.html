@@ -2,283 +2,171 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portfolio Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Saida Vali Shaik | Product Portfolio</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-:root {
-  --bg-light: #f8fafc;
-  --bg-dark: #0f172a;
-  --text-light: #0f172a;
-  --text-dark: #f8fafc;
-  --primary: #2563eb;
-  --card: #ffffff;
-}
+  body {
+    background: radial-gradient(circle at top, #ff5a1f, #0b0b0f);
+    color: white;
+    overflow-x: hidden;
+  }
 
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: var(--bg-light);
-  color: var(--text-light);
-}
+  .glass {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
 
-body.dark {
-  background: var(--bg-dark);
-  color: var(--text-dark);
-}
+  .fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
 
-.app {
-  display: flex;
-  min-height: 100vh;
-}
+  .fade.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-/* SIDEBAR */
-.sidebar {
-  width: 240px;
-  background: #1e293b;
-  color: white;
-  padding: 20px;
-}
-
-.sidebar h2 {
-  margin-bottom: 20px;
-}
-
-.sidebar button {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: none;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-  text-align: left;
-}
-
-.sidebar button.active {
-  background: rgba(255,255,255,0.15);
-}
-
-/* MAIN */
-.main {
-  flex: 1;
-  padding: 30px;
-}
-
-.card {
-  background: var(--card);
-  color: #0f172a;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-body.dark .card {
-  background: #020617;
-  color: white;
-}
-
-input, textarea, select {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-}
-
-button.primary {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  cursor: pointer;
-}
-
-.preview h2 {
-  color: var(--primary);
-}
+  .btn {
+    transition: 0.3s;
+  }
+  .btn:hover {
+    transform: scale(1.05);
+  }
 </style>
 </head>
 
 <body>
-<div class="app">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h2>Portfolio Builder</h2>
-    <button onclick="showSection('settings')" class="active">⚙ Settings</button>
-    <button onclick="showSection('resume')">📄 Resume</button>
-    <button onclick="showSection('portfolios')">📁 Portfolios</button>
+<!-- NAV -->
+<header class="fixed top-0 w-full glass flex justify-between items-center px-10 py-4 z-50">
+  <div class="font-bold text-lg">SVS</div>
+
+  <nav class="hidden md:flex gap-8 text-sm">
+    <a href="#about">About</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#chat">AI Chat</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="flex gap-3">
+    <a href="YOUR_GITHUB" class="btn border px-3 py-1 rounded-full text-sm">GitHub</a>
+    <a href="YOUR_LINKEDIN" class="btn border px-3 py-1 rounded-full text-sm">LinkedIn</a>
   </div>
+</header>
 
-  <!-- MAIN -->
-  <div class="main">
+<!-- HERO -->
+<section class="h-screen flex flex-col justify-center items-center text-center px-6">
+  <h1 class="text-5xl md:text-7xl font-extrabold fade">Product Mind. Data Brain.</h1>
+  <p class="mt-6 max-w-2xl opacity-80 fade">
+    Business Analyst → Product Consultant | 3+ years experience in Airline, EdTech & Energy domains.
+  </p>
 
-    <!-- SETTINGS -->
-    <div id="settings" class="card">
-      <h3>Appearance Settings</h3>
+  <div class="mt-6 fade">
+    <a href="#cases" class="btn bg-white text-black px-6 py-2 rounded-full font-bold">
+      View Case Studies
+    </a>
+  </div>
+</section>
 
-      <label>Theme</label>
-      <select onchange="setTheme(this.value)">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
+<!-- ABOUT -->
+<section id="about" class="px-10 py-20 fade">
+  <h2 class="text-3xl font-bold mb-4">About Me</h2>
+  <p class="max-w-3xl opacity-80">
+    I specialize in bridging business and technology. I translate complex requirements into structured
+    product solutions using Agile, Jira, SQL, and analytics tools. I focus on building scalable,
+    user-driven digital products.
+  </p>
+</section>
 
-      <label>Primary Color</label>
-      <select onchange="setColor(this.value)">
-        <option value="#2563eb">Blue</option>
-        <option value="#059669">Green</option>
-        <option value="#e11d48">Red</option>
-      </select>
+<!-- CASE STUDIES DASHBOARD -->
+<section id="cases" class="px-10 py-20">
+  <h2 class="text-3xl font-bold mb-10 fade">Case Study Dashboard</h2>
 
-      <label>Font</label>
-      <select onchange="setFont(this.value)">
-        <option value="system-ui">Default</option>
-        <option value="serif">Serif</option>
-        <option value="monospace">Mono</option>
-      </select>
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="glass p-6 rounded-2xl fade">
+      <h3 class="font-bold">✈ Airline Reservation System</h3>
+      <p class="text-sm opacity-70 mt-2">
+        Agile sprint management, UAT execution, booking workflow optimization.
+      </p>
+      <div class="mt-4 text-xs opacity-60">Impact: Reduced booking errors by improving requirement clarity</div>
     </div>
 
-    <!-- RESUME -->
-    <div id="resume" class="card" style="display:none">
-      <h3>Edit Resume</h3>
-
-      <input id="name" placeholder="Full Name" />
-      <textarea id="summary" placeholder="Professional Summary"></textarea>
-      <textarea id="skills" placeholder="Skills"></textarea>
-      <textarea id="experience" placeholder="Experience"></textarea>
-      <textarea id="projects" placeholder="Projects"></textarea>
-      <textarea id="education" placeholder="Education"></textarea>
-
-      <button class="primary" onclick="downloadResume()">Download Resume (PDF)</button>
-
-      <div class="preview">
-        <h2 id="pName"></h2>
-        <p id="pSummary"></p>
-        <p><b>Skills:</b> <span id="pSkills"></span></p>
-        <p><b>Experience:</b> <span id="pExperience"></span></p>
-        <p><b>Projects:</b> <span id="pProjects"></span></p>
-        <p><b>Education:</b> <span id="pEducation"></span></p>
-      </div>
+    <div class="glass p-6 rounded-2xl fade">
+      <h3 class="font-bold">🤖 Airline Chatbot (AI/NLP)</h3>
+      <p class="text-sm opacity-70 mt-2">
+        Designed conversational flows for booking & support automation.
+      </p>
+      <div class="mt-4 text-xs opacity-60">Impact: Improved self-service response rate</div>
     </div>
 
-    <!-- PORTFOLIOS -->
-    <div id="portfolios" class="card" style="display:none">
-      <h3>Saved Portfolios</h3>
-
-      <input id="portfolioName" placeholder="Portfolio Name" />
-      <button class="primary" onclick="savePortfolio()">Save Current Portfolio</button>
-
-      <hr>
-
-      <h4>Upload Resume (TXT)</h4>
-      <input type="file" accept=".txt" onchange="uploadResume(this)" />
-
-      <ul id="portfolioList"></ul>
+    <div class="glass p-6 rounded-2xl fade">
+      <h3 class="font-bold">📊 EdTech Platform</h3>
+      <p class="text-sm opacity-70 mt-2">
+        Built dashboards & counselor workflows for career guidance system.
+      </p>
+      <div class="mt-4 text-xs opacity-60">Impact: Improved student engagement insights</div>
     </div>
 
   </div>
-</div>
+</section>
+
+<!-- AI CHATBOT -->
+<section id="chat" class="px-10 py-20 fade">
+  <h2 class="text-3xl font-bold mb-6">AI Product Assistant (Demo)</h2>
+
+  <div class="glass p-6 rounded-2xl max-w-2xl">
+    <div id="chatBox" class="h-64 overflow-y-auto text-sm space-y-2"></div>
+
+    <div class="flex mt-4 gap-2">
+      <input id="userInput" class="w-full p-2 rounded text-black" placeholder="Ask about my experience..." />
+      <button onclick="sendMsg()" class="bg-white text-black px-4 rounded">Send</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="px-10 py-20 text-center fade">
+  <h2 class="text-3xl font-bold">Let’s Work Together</h2>
+  <p class="mt-2 opacity-70">Hyderabad | +91-7569784511 | saidashaik1319@gmail.com</p>
+</section>
 
 <script>
-let current = "settings";
-let portfolios = JSON.parse(localStorage.getItem("portfolios") || "[]");
-
-function showSection(id) {
-  document.getElementById(current).style.display = "none";
-  document.getElementById(id).style.display = "block";
-  current = id;
-}
-
-function setTheme(t) {
-  document.body.className = t === "dark" ? "dark" : "";
-}
-
-function setColor(c) {
-  document.documentElement.style.setProperty("--primary", c);
-}
-
-function setFont(f) {
-  document.body.style.fontFamily = f;
-}
-
-function updatePreview() {
-  pName.textContent = name.value;
-  pSummary.textContent = summary.value;
-  pSkills.textContent = skills.value;
-  pExperience.textContent = experience.value;
-  pProjects.textContent = projects.value;
-  pEducation.textContent = education.value;
-}
-
-document.querySelectorAll("input, textarea").forEach(e =>
-  e.addEventListener("input", updatePreview)
-);
-
-function downloadResume() {
-  window.print();
-}
-
-function savePortfolio() {
-  const p = {
-    name: portfolioName.value || "Untitled Portfolio",
-    data: {
-      name: name.value,
-      summary: summary.value,
-      skills: skills.value,
-      experience: experience.value,
-      projects: projects.value,
-      education: education.value
+// Scroll animation (Framer-like)
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
     }
-  };
-  portfolios.push(p);
-  localStorage.setItem("portfolios", JSON.stringify(portfolios));
-  renderPortfolios();
-}
-
-function uploadResume(input) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const text = e.target.result;
-
-    name.value = text.split("\n")[0] || "";
-    summary.value = text.slice(0, 300);
-    skills.value = text;
-    experience.value = text;
-    projects.value = "";
-    education.value = "";
-
-    updatePreview();
-    portfolioName.value = file.name.replace(".txt", "");
-    showSection("resume");
-  };
-  reader.readAsText(file);
-}
-
-function renderPortfolios() {
-  portfolioList.innerHTML = "";
-  portfolios.forEach(p => {
-    const li = document.createElement("li");
-    li.textContent = p.name;
-    li.onclick = () => loadPortfolio(p);
-    portfolioList.appendChild(li);
   });
-}
+});
 
-function loadPortfolio(p) {
-  name.value = p.data.name;
-  summary.value = p.data.summary;
-  skills.value = p.data.skills;
-  experience.value = p.data.experience;
-  projects.value = p.data.projects;
-  education.value = p.data.education;
-  updatePreview();
-  showSection("resume");
-}
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
 
-renderPortfolios();
-updatePreview();
+// Simple AI Chat Demo
+function sendMsg(){
+  const input = document.getElementById("userInput");
+  const box = document.getElementById("chatBox");
+
+  const user = input.value;
+  if(!user) return;
+
+  box.innerHTML += `<div><b>You:</b> ${user}</div>`;
+
+  let reply = "I specialize in Product Management, Agile delivery, and data-driven decision making.";
+  if(user.toLowerCase().includes("project")){
+    reply = "I managed Airline, EdTech & AI chatbot projects using Agile & Jira.";
+  }
+
+  box.innerHTML += `<div><b>AI:</b> ${reply}</div>`;
+  input.value = "";
+  box.scrollTop = box.scrollHeight;
+}
 </script>
 
 </body>
