@@ -9,21 +9,21 @@
 
 <style>
   body {
-    background: radial-gradient(circle at top, #ff5a1f, #0b0b0f);
+    background: radial-gradient(circle at top, #0b1220, #05070d);
     color: white;
     overflow-x: hidden;
   }
 
   .glass {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.08);
   }
 
   .fade {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.8s ease;
+    transition: all 0.9s ease;
   }
 
   .fade.show {
@@ -31,26 +31,54 @@
     transform: translateY(0);
   }
 
-  .btn {
-    transition: 0.3s;
-  }
   .btn:hover {
     transform: scale(1.05);
+    transition: 0.3s;
+  }
+
+  /* WATERMARK NAME */
+  .watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18vw;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    z-index: 0;
+    pointer-events: none;
+    letter-spacing: 20px;
+  }
+
+  /* FLOAT ACTION BUTTON */
+  .fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #22d3ee;
+    color: black;
+    padding: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
 </style>
 </head>
 
 <body>
 
+<!-- WATERMARK -->
+<div class="watermark">SAIDA</div>
+
 <!-- NAV -->
 <header class="fixed top-0 w-full glass flex justify-between items-center px-10 py-4 z-50">
-  <div class="font-bold text-lg">SVS</div>
+  <div class="font-bold">SSV</div>
 
   <nav class="hidden md:flex gap-8 text-sm">
     <a href="#about">About</a>
-    <a href="#cases">Case Studies</a>
-    <a href="#chat">AI Chat</a>
-    <a href="#contact">Contact</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
   </nav>
 
   <div class="flex gap-3">
@@ -60,84 +88,141 @@
 </header>
 
 <!-- HERO -->
-<section class="h-screen flex flex-col justify-center items-center text-center px-6">
-  <h1 class="text-5xl md:text-7xl font-extrabold fade">Product Mind. Data Brain.</h1>
-  <p class="mt-6 max-w-2xl opacity-80 fade">
-    Business Analyst → Product Consultant | 3+ years experience in Airline, EdTech & Energy domains.
+<section class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
+
+  <h1 class="text-5xl md:text-7xl font-extrabold fade">
+    Business Analyst | Aspiring Product Manager | Project Coordinator
+  </h1>
+
+  <p class="mt-6 max-w-3xl opacity-80 fade">
+    3+ years experience across Airline, EdTech, Energy domains delivering data-driven business solutions,
+    requirement analysis, and Agile delivery support.
   </p>
 
-  <div class="mt-6 fade">
-    <a href="#cases" class="btn bg-white text-black px-6 py-2 rounded-full font-bold">
-      View Case Studies
-    </a>
-  </div>
+  <p class="mt-3 text-sm opacity-60 fade">
+    Hyderabad, India | +91-7569784511 | saidashaik1319@gmail.com
+  </p>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="px-10 py-20 fade">
-  <h2 class="text-3xl font-bold mb-4">About Me</h2>
-  <p class="max-w-3xl opacity-80">
-    I specialize in bridging business and technology. I translate complex requirements into structured
-    product solutions using Agile, Jira, SQL, and analytics tools. I focus on building scalable,
-    user-driven digital products.
+<section id="about" class="px-10 py-20 fade relative z-10">
+  <h2 class="text-3xl font-bold mb-4">Professional Summary</h2>
+  <p class="max-w-4xl opacity-80">
+    Business Analyst & Product Consultant with 3+ years of experience delivering data-driven and client-focused solutions across Airline, EdTech, and Energy domains.
+    Proven ability to gather and translate business requirements into actionable insights, collaborate with cross-functional teams, and support Agile delivery.
+    Experienced in client interaction, issue resolution, and product improvement using Jira and Azure DevOps.
+    Aspiring Product Manager with strong analytical, stakeholder management, and problem-solving skills.
   </p>
 </section>
 
-<!-- CASE STUDIES DASHBOARD -->
-<section id="cases" class="px-10 py-20">
-  <h2 class="text-3xl font-bold mb-10 fade">Case Study Dashboard</h2>
+<!-- SKILLS -->
+<section id="skills" class="px-10 py-20 fade relative z-10">
+  <h2 class="text-3xl font-bold mb-6">Core Skills</h2>
 
-  <div class="grid md:grid-cols-3 gap-6">
+  <div class="flex flex-wrap gap-3 text-black">
+    <span class="bg-white px-3 py-1 rounded-full">Requirement Gathering</span>
+    <span class="bg-white px-3 py-1 rounded-full">BRD / FRD / SRS</span>
+    <span class="bg-white px-3 py-1 rounded-full">User Stories</span>
+    <span class="bg-white px-3 py-1 rounded-full">UAT Support</span>
+    <span class="bg-white px-3 py-1 rounded-full">Client Communication</span>
+    <span class="bg-white px-3 py-1 rounded-full">Agile / Scrum</span>
+    <span class="bg-white px-3 py-1 rounded-full">Jira / Confluence</span>
+    <span class="bg-white px-3 py-1 rounded-full">Azure DevOps</span>
+    <span class="bg-white px-3 py-1 rounded-full">SQL Basics</span>
+    <span class="bg-white px-3 py-1 rounded-full">Excel / Power BI</span>
+    <span class="bg-white px-3 py-1 rounded-full">Tableau</span>
+    <span class="bg-white px-3 py-1 rounded-full">Figma</span>
+    <span class="bg-white px-3 py-1 rounded-full">Testing & QA</span>
+  </div>
+</section>
 
-    <div class="glass p-6 rounded-2xl fade">
-      <h3 class="font-bold">✈ Airline Reservation System</h3>
-      <p class="text-sm opacity-70 mt-2">
-        Agile sprint management, UAT execution, booking workflow optimization.
-      </p>
-      <div class="mt-4 text-xs opacity-60">Impact: Reduced booking errors by improving requirement clarity</div>
+<!-- EXPERIENCE -->
+<section id="experience" class="px-10 py-20 fade relative z-10">
+  <h2 class="text-3xl font-bold mb-8">Experience</h2>
+
+  <div class="space-y-8">
+
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold">Product Consultant – Caliber Technologies</h3>
+      <p class="text-sm opacity-70">Nov 2025 – Present</p>
+      <ul class="mt-3 text-sm opacity-80 list-disc ml-5 space-y-1">
+        <li>Worked on EPIQ LearnIQ module for enterprise pharma clients</li>
+        <li>Managed 3 client projects as primary SPOC</li>
+        <li>Logged issues in Azure DevOps with detailed analysis</li>
+        <li>Conducted demos, release walkthroughs & patch updates</li>
+        <li>Improved product usability through structured feedback handling</li>
+      </ul>
     </div>
 
-    <div class="glass p-6 rounded-2xl fade">
-      <h3 class="font-bold">🤖 Airline Chatbot (AI/NLP)</h3>
-      <p class="text-sm opacity-70 mt-2">
-        Designed conversational flows for booking & support automation.
-      </p>
-      <div class="mt-4 text-xs opacity-60">Impact: Improved self-service response rate</div>
-    </div>
-
-    <div class="glass p-6 rounded-2xl fade">
-      <h3 class="font-bold">📊 EdTech Platform</h3>
-      <p class="text-sm opacity-70 mt-2">
-        Built dashboards & counselor workflows for career guidance system.
-      </p>
-      <div class="mt-4 text-xs opacity-60">Impact: Improved student engagement insights</div>
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold">Business Analyst & QA – Inspire Info Sol Pvt Ltd</h3>
+      <p class="text-sm opacity-70">Jan 2023 – July 2025</p>
+      <ul class="mt-3 text-sm opacity-80 list-disc ml-5 space-y-1">
+        <li>Requirement gathering (BRD/FRD/SRS/User Stories)</li>
+        <li>Agile sprint planning and backlog management</li>
+        <li>SQL and Excel-based data validation</li>
+        <li>UAT execution and defect tracking</li>
+        <li>Created workflows and reporting dashboards</li>
+      </ul>
     </div>
 
   </div>
 </section>
 
-<!-- AI CHATBOT -->
-<section id="chat" class="px-10 py-20 fade">
-  <h2 class="text-3xl font-bold mb-6">AI Product Assistant (Demo)</h2>
+<!-- PROJECTS -->
+<section id="projects" class="px-10 py-20 fade relative z-10">
+  <h2 class="text-3xl font-bold mb-8">Key Projects</h2>
 
-  <div class="glass p-6 rounded-2xl max-w-2xl">
-    <div id="chatBox" class="h-64 overflow-y-auto text-sm space-y-2"></div>
+  <div class="grid md:grid-cols-2 gap-6">
 
-    <div class="flex mt-4 gap-2">
-      <input id="userInput" class="w-full p-2 rounded text-black" placeholder="Ask about my experience..." />
-      <button onclick="sendMsg()" class="bg-white text-black px-4 rounded">Send</button>
+    <div class="glass p-6 rounded-2xl">
+      ✈ Airline Reservation System<br/>
+      Agile ceremonies, booking workflow, UAT validation
     </div>
+
+    <div class="glass p-6 rounded-2xl">
+      🎯 Loyalty & Discount Platform<br/>
+      Business rules, backlog grooming, optimization
+    </div>
+
+    <div class="glass p-6 rounded-2xl">
+      🤖 Airline Chatbot (NLP/LLM)<br/>
+      Conversation flow design & testing
+    </div>
+
+    <div class="glass p-6 rounded-2xl">
+      📊 EdTech Platform<br/>
+      Dashboards, counseling workflows, analytics
+    </div>
+
+    <div class="glass p-6 rounded-2xl">
+      🧪 Test Management Tool<br/>
+      Sprint-based QA tracking system
+    </div>
+
+    <div class="glass p-6 rounded-2xl">
+      ☀ Solar PV Project<br/>
+      Functional validation & test cases
+    </div>
+
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="px-10 py-20 text-center fade">
-  <h2 class="text-3xl font-bold">Let’s Work Together</h2>
-  <p class="mt-2 opacity-70">Hyderabad | +91-7569784511 | saidashaik1319@gmail.com</p>
+<!-- EDUCATION -->
+<section class="px-10 py-20 fade relative z-10">
+  <h2 class="text-3xl font-bold mb-4">Education</h2>
+  <p class="opacity-80">
+    Bachelor of Science (Mathematics, Electronics, Computer Science)<br/>
+    VDA Degree College, Andhra University — 2023
+  </p>
 </section>
+
+<!-- FLOAT BUTTON -->
+<a href="mailto:saidashaik1319@gmail.com" class="fab">
+  ✉
+</a>
 
 <script>
-// Scroll animation (Framer-like)
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
@@ -147,26 +232,6 @@ const observer = new IntersectionObserver(entries => {
 });
 
 document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-
-// Simple AI Chat Demo
-function sendMsg(){
-  const input = document.getElementById("userInput");
-  const box = document.getElementById("chatBox");
-
-  const user = input.value;
-  if(!user) return;
-
-  box.innerHTML += `<div><b>You:</b> ${user}</div>`;
-
-  let reply = "I specialize in Product Management, Agile delivery, and data-driven decision making.";
-  if(user.toLowerCase().includes("project")){
-    reply = "I managed Airline, EdTech & AI chatbot projects using Agile & Jira.";
-  }
-
-  box.innerHTML += `<div><b>AI:</b> ${reply}</div>`;
-  input.value = "";
-  box.scrollTop = box.scrollHeight;
-}
 </script>
 
 </body>
