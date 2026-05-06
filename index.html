@@ -1,14 +1,7 @@
 <!--
-© 2025 VISRAI. All Rights Reserved.
-
-This website, including its design, animations, scripts, and structure,
-is proprietary intellectual property of VISRAI.
-
-Unauthorized copying, reproduction, reverse‑engineering, distribution,
-or reuse of this source code — in part or in full — is strictly prohibited.
-
-Legal action may be taken for violations.
+© 2026 VISRAI. All Rights Reserved.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,87 +12,86 @@ Legal action may be taken for violations.
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-  body {
-    background: radial-gradient(circle at top, #0b1220, #05070d);
-    color: white;
-    overflow-x: hidden;
-  }
+body {
+  background: radial-gradient(circle at top, #0b1220, #05070d);
+  color: white;
+  overflow-x: hidden;
+}
 
-  .glass {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
+.glass {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
 
-  .fade {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.9s ease;
-  }
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease;
+}
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .fade.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btn:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
 
-  .btn:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
-  }
+/* WATERMARK */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18vw;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  z-index: 2;
+  pointer-events: none;
+  letter-spacing: 20px;
+}
 
-  /* WATERMARK NAME */
-  .watermark {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18vw;
-    font-weight: 900;
-    color: rgba(255,255,255,0.03);
-    z-index: 0;
-    pointer-events: none;
-    letter-spacing: 20px;
-  }
+/* FLOAT BUTTON */
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #22d3ee;
+  color: black;
+  padding: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 20;
+}
 
-  /* FLOAT ACTION BUTTON */
-  .fab {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #22d3ee;
-    color: black;
-    padding: 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
+/* BACKGROUND ANIMATION */
+#bg-network {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND CANVAS -->
+<canvas id="bg-network"></canvas>
+
 <!-- WATERMARK -->
 <div class="watermark">SAIDA</div>
 
 <!-- NAV -->
-<header class="fixed top-0 w-full glass flex justify-between items-center px-10 py-4 z-50">
-
-  <!-- LEFT LOGO -->
+<header class="fixed top-0 w-full glass flex justify-between items-center px-10 py-4 z-20">
   <div class="flex items-center gap-3">
-
-    <img 
-      src="logo.png" 
-      alt="VISRAI Logo"
-      class="w-10 h-10 object-contain rounded-full"
-    />
-
-    <div class="font-bold text-lg tracking-wide">
-      VISRAI
-    </div>
-
+    <img src="logo.png" class="w-10 h-10 rounded-full" />
+    <div class="font-bold text-lg">VISRAI</div>
   </div>
 
-  <!-- NAVIGATION -->
   <nav class="hidden md:flex gap-8 text-sm">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
@@ -107,33 +99,22 @@ Legal action may be taken for violations.
     <a href="#skills">Skills</a>
   </nav>
 
-  <!-- SOCIAL LINKS -->
   <div class="flex gap-3">
-    <a href="YOUR_GITHUB" class="btn border px-3 py-1 rounded-full text-sm">
-      GitHub
-    </a>
-
-    <a href="YOUR_LINKEDIN" class="btn border px-3 py-1 rounded-full text-sm">
-      LinkedIn
-    </a>
+    <a href="YOUR_GITHUB" class="btn border px-3 py-1 rounded-full text-sm">GitHub</a>
+    <a href="YOUR_LINKEDIN" class="btn border px-3 py-1 rounded-full text-sm">LinkedIn</a>
   </div>
-
 </header>
 
 <!-- HERO -->
-<section class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
-
-  <h1 class="text-5xl md:text-7xl font-extrabold fade">
+<section class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10 fade">
+  <h1 class="text-5xl md:text-7xl font-extrabold">
     Business Analyst | Aspiring Product Manager | Project Coordinator
   </h1>
-
-  <p class="mt-6 max-w-3xl opacity-80 fade">
-    3+ years experience across Airline, EdTech, Energy domains delivering data-driven business solutions,
-    requirement analysis, and Agile delivery support.
+  <p class="mt-6 max-w-3xl opacity-80">
+    3+ years experience across Airline, EdTech, Energy domains delivering data-driven solutions.
   </p>
-
-  <p class="mt-3 text-sm opacity-60 fade">
-    Hyderabad, India | +91-7569784511 | saidashaik1319@gmail.com
+  <p class="mt-3 text-sm opacity-60">
+    Hyderabad, India | +91-7569784511
   </p>
 </section>
 
@@ -141,31 +122,20 @@ Legal action may be taken for violations.
 <section id="about" class="px-10 py-20 fade relative z-10">
   <h2 class="text-3xl font-bold mb-4">Professional Summary</h2>
   <p class="max-w-4xl opacity-80">
-    Business Analyst & Product Consultant with 3+ years of experience delivering data-driven and client-focused solutions across Airline, EdTech, and Energy domains.
-    Proven ability to gather and translate business requirements into actionable insights, collaborate with cross-functional teams, and support Agile delivery.
-    Experienced in client interaction, issue resolution, and product improvement using Jira and Azure DevOps.
-    Aspiring Product Manager with strong analytical, stakeholder management, and problem-solving skills.
+    Business Analyst & Product Consultant with strong stakeholder management,
+    Agile delivery and analytical skills.
   </p>
 </section>
 
 <!-- SKILLS -->
 <section id="skills" class="px-10 py-20 fade relative z-10">
   <h2 class="text-3xl font-bold mb-6">Core Skills</h2>
-
   <div class="flex flex-wrap gap-3 text-black">
-    <span class="bg-white px-3 py-1 rounded-full">Requirement Gathering</span>
-    <span class="bg-white px-3 py-1 rounded-full">BRD / FRD / SRS</span>
-    <span class="bg-white px-3 py-1 rounded-full">User Stories</span>
-    <span class="bg-white px-3 py-1 rounded-full">UAT Support</span>
-    <span class="bg-white px-3 py-1 rounded-full">Client Communication</span>
     <span class="bg-white px-3 py-1 rounded-full">Agile / Scrum</span>
-    <span class="bg-white px-3 py-1 rounded-full">Jira / Confluence</span>
-    <span class="bg-white px-3 py-1 rounded-full">Azure DevOps</span>
+    <span class="bg-white px-3 py-1 rounded-full">Jira / Azure DevOps</span>
+    <span class="bg-white px-3 py-1 rounded-full">UAT</span>
+    <span class="bg-white px-3 py-1 rounded-full">Power BI</span>
     <span class="bg-white px-3 py-1 rounded-full">SQL Basics</span>
-    <span class="bg-white px-3 py-1 rounded-full">Excel / Power BI</span>
-    <span class="bg-white px-3 py-1 rounded-full">Tableau</span>
-    <span class="bg-white px-3 py-1 rounded-full">Figma</span>
-    <span class="bg-white px-3 py-1 rounded-full">Testing & QA</span>
   </div>
 </section>
 
@@ -173,113 +143,93 @@ Legal action may be taken for violations.
 <section id="experience" class="px-10 py-20 fade relative z-10">
   <h2 class="text-3xl font-bold mb-8">Experience</h2>
 
-  <div class="space-y-8">
+  <div class="glass p-6 rounded-2xl mb-6">
+    <h3 class="font-bold">Product Consultant – Caliber Technologies</h3>
+    <p class="opacity-70 text-sm">Nov 2025 – Present</p>
+  </div>
 
-    <div class="glass p-6 rounded-2xl">
-      <h3 class="font-bold">Product Consultant – Caliber Technologies</h3>
-      <p class="text-sm opacity-70">Nov 2025 – Present</p>
-      <ul class="mt-3 text-sm opacity-80 list-disc ml-5 space-y-1">
-        <li>Worked on EPIQ LearnIQ module for enterprise pharma clients</li>
-        <li>Managed 3 client projects as primary SPOC</li>
-        <li>Logged issues in Azure DevOps with detailed analysis</li>
-        <li>Conducted demos, release walkthroughs & patch updates</li>
-        <li>Improved product usability through structured feedback handling</li>
-      </ul>
-    </div>
-
-    <div class="glass p-6 rounded-2xl">
-      <h3 class="font-bold">Business Analyst & QA – Inspire Info Sol Pvt Ltd</h3>
-      <p class="text-sm opacity-70">Jan 2023 – July 2025</p>
-      <ul class="mt-3 text-sm opacity-80 list-disc ml-5 space-y-1">
-        <li>Requirement gathering (BRD/FRD/SRS/User Stories)</li>
-        <li>Agile sprint planning and backlog management</li>
-        <li>SQL and Excel-based data validation</li>
-        <li>UAT execution and defect tracking</li>
-        <li>Created workflows and reporting dashboards</li>
-      </ul>
-    </div>
-
+  <div class="glass p-6 rounded-2xl">
+    <h3 class="font-bold">Business Analyst – Inspire InfoSol</h3>
+    <p class="opacity-70 text-sm">Jan 2023 – Jul 2025</p>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects" class="px-10 py-20 fade relative z-10">
   <h2 class="text-3xl font-bold mb-8">Key Projects</h2>
-
   <div class="grid md:grid-cols-2 gap-6">
-
-    <div class="glass p-6 rounded-2xl">
-      ✈ Airline Reservation System<br/>
-      Agile ceremonies, booking workflow, UAT validation
-    </div>
-
-    <div class="glass p-6 rounded-2xl">
-      🎯 Loyalty & Discount Platform<br/>
-      Business rules, backlog grooming, optimization
-    </div>
-
-    <div class="glass p-6 rounded-2xl">
-      🤖 Airline Chatbot (NLP/LLM)<br/>
-      Conversation flow design & testing
-    </div>
-
-    <div class="glass p-6 rounded-2xl">
-      📊 EdTech Platform<br/>
-      Dashboards, counseling workflows, analytics
-    </div>
-
-    <div class="glass p-6 rounded-2xl">
-      🧪 Test Management Tool<br/>
-      Sprint-based QA tracking system
-    </div>
-
-    <div class="glass p-6 rounded-2xl">
-      ☀ Solar PV Project<br/>
-      Functional validation & test cases
-    </div>
-
+    <div class="glass p-6 rounded-xl">✈ Airline Reservation System</div>
+    <div class="glass p-6 rounded-xl">🤖 AI Chatbot</div>
+    <div class="glass p-6 rounded-xl">📊 EdTech Analytics</div>
+    <div class="glass p-6 rounded-xl">☀ Solar PV Platform</div>
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section class="px-10 py-20 fade relative z-10">
-  <h2 class="text-3xl font-bold mb-4">Education</h2>
-  <p class="opacity-80">
-    Bachelor of Science (Mathematics, Electronics, Computer Science)<br/>
-    VDA Degree College, Andhra University — 2023
-  </p>
-</section>
+<!-- FOOTER -->
+<footer class="relative z-10 py-8 flex justify-center gap-8 opacity-80">
+  <a href="YOUR_GITHUB" target="_blank">
+    <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+      <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1.9.2 1.3-.7 1.3-.7.2-.7.6-1.1 1-1.3-2.5-.3-5.1-1.2-5.1-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-3 0 0 .9-.3 3 .1 1-.3 2.1-.4 3.2-.4s2.2.1 3.2.4c2.1-.4 3-.1 3-.1.6 1.6.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.1-2.6 5-5.1 5.3.4.3.7.9.7 1.8v2.7c0 .3.2.6.8.5A11.5 11.5 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"/>
+    </svg>
+  </a>
 
-<!-- FLOAT BUTTON -->
-<a href="mailto:saidashaik1319@gmail.com" class="fab">
-  ✉
-</a>
+  <a href="YOUR_LINKEDIN" target="_blank">
+    <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+      <path d="M4.98 3.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM3 8.98h4v12H3zM9.5 8.98h3.8v1.7h.1a4.2 4.2 0 013.8-2.1c4.1 0 4.9 2.7 4.9 6.2v6.2h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9v5.6h-4z"/>
+    </svg>
+  </a>
+</footer>
+
+<!-- FLOAT MAIL -->
+<a href="mailto:saidashaik1319@gmail.com" class="fab">✉</a>
 
 <script>
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>e.isIntersecting && e.target.classList.add("show"));
 });
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
 
-document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+/* NETWORK BACKGROUND */
+const canvas = document.getElementById("bg-network");
+const ctx = canvas.getContext("2d");
+let w,h;
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+addEventListener("resize",resize);resize();
+
+const dots=[...Array(60)].map(()=>({
+  x:Math.random()*w,
+  y:Math.random()*h,
+  vx:(Math.random()-.5)*.4,
+  vy:(Math.random()-.5)*.4
+}));
+
+(function draw(){
+  ctx.clearRect(0,0,w,h);
+  dots.forEach(d=>{
+    d.x+=d.vx; d.y+=d.vy;
+    if(d.x<0||d.x>w) d.vx*=-1;
+    if(d.y<0||d.y>h) d.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(d.x,d.y,2,0,Math.PI*2);
+    ctx.fillStyle="rgba(255,255,255,.6)";
+    ctx.fill();
+  });
+  for(let i=0;i<dots.length;i++)
+    for(let j=i+1;j<dots.length;j++){
+      let dx=dots[i].x-dots[j].x;
+      let dy=dots[i].y-dots[j].y;
+      let dist=Math.hypot(dx,dy);
+      if(dist<120){
+        ctx.strokeStyle=`rgba(34,211,238,${1-dist/120})`;
+        ctx.beginPath();
+        ctx.moveTo(dots[i].x,dots[i].y);
+        ctx.lineTo(dots[j].x,dots[j].y);
+        ctx.stroke();
+      }
+    }
+  requestAnimationFrame(draw);
+})();
 </script>
 
 </body>
 </html>
-<script>
-/* ━━ BASIC SOURCE PROTECTION (DETERRENT) ━━ */
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-document.addEventListener("keydown", e => {
-  if (
-    e.key === "F12" ||
-    (e.ctrlKey && e.shiftKey && ["I","C","J"].includes(e.key)) ||
-    (e.ctrlKey && e.key === "U")
-  ) {
-    e.preventDefault();
-  }
-});
-</script>
