@@ -5,20 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Saida Vali Shaik | Product Portfolio</title>
 
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 html { scroll-behavior: smooth; }
 
 body {
-  --bg1:#0b1220; --bg2:#05070d; --text:#ffffff;
+  --bg1:#0b1220;
+  --bg2:#05070d;
+  --text:#ffffff;
   background: radial-gradient(circle at top, var(--bg1), var(--bg2));
   color: var(--text);
-  overflow-x:hidden;
-  transition: .5s ease;
+  overflow-x: hidden;
+  transition: background .5s ease, color .5s ease;
 }
+
 body.light {
-  --bg1:#f4f6fb; --bg2:#e5eaf2; --text:#0b1220;
+  --bg1:#f4f6fb;
+  --bg2:#e5eaf2;
+  --text:#0b1220;
 }
 
 .glass {
@@ -26,37 +32,71 @@ body.light {
   backdrop-filter: blur(14px);
   border: 1px solid rgba(255,255,255,0.08);
 }
-.fade{opacity:0;transform:translateY(40px);transition:.9s}
-.fade.show{opacity:1;transform:none}
 
-.watermark{
-  position:fixed; inset:0;
-  display:flex; align-items:center; justify-content:center;
-  font-size:18vw; font-weight:900;
-  color:rgba(255,255,255,0.03);
-  pointer-events:none; z-index:2;
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease;
 }
-#bg-network{
-  position:fixed; inset:0;
-  z-index:1; pointer-events:none;
+.fade.show {
+  opacity: 1;
+  transform: none;
 }
-.toggle{
-  position:fixed; top:80px; right:20px;
-  z-index:30; background:#22d3ee;
-  color:#000; padding:6px 14px;
-  border-radius:999px; cursor:pointer;
+
+.watermark {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18vw;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  z-index: 2;
+}
+
+#bg-network {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.toggle {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 50;
+  background: #22d3ee;
+  color: #000;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #22d3ee;
+  color: black;
+  padding: 14px;
+  border-radius: 50%;
+  z-index: 50;
 }
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
 <canvas id="bg-network"></canvas>
 <div class="watermark">SAIDA</div>
 <div class="toggle" onclick="toggleTheme()">🌗 Theme</div>
 
-<!-- HEADER (SOCIAL REMOVED) -->
-<header class="fixed top-0 w-full glass px-10 py-4 flex justify-between z-20">
+<!-- HEADER -->
+<header class="fixed top-0 w-full glass flex justify-between items-center px-10 py-4 z-40">
   <div class="font-bold text-lg">VISRAI</div>
   <nav class="hidden md:flex gap-8 text-sm">
     <a href="#about">About</a>
@@ -67,7 +107,7 @@ body.light {
 </header>
 
 <!-- HERO -->
-<section class="h-screen flex flex-col justify-center items-center text-center px-6 z-10 fade">
+<section class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10 fade">
   <h1 class="text-5xl md:text-7xl font-extrabold">SAIDA VALI SHAIK</h1>
   <p class="mt-4 text-lg opacity-80">
     Business Analyst | Product Consultant | Aspiring Product Manager
@@ -75,122 +115,150 @@ body.light {
   <p class="mt-3 text-sm opacity-60">
     Hyderabad, India | +91‑7569784511 | saidashaik1319@gmail.com
   </p>
+
+  <a href="Saida_Vali_Shaik_Resume.pdf"
+     download
+     class="mt-6 inline-block px-6 py-3 rounded-full bg-cyan-400 text-black font-semibold hover:scale-105 transition">
+    📄 Download Resume
+  </a>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="px-10 py-20 fade z-10">
+<section id="about" class="px-10 py-20 relative z-10 fade">
   <h2 class="text-3xl font-bold mb-4">Professional Summary</h2>
   <p class="max-w-5xl opacity-80 leading-relaxed">
     Business Analyst & Product Consultant with 3+ years of experience delivering
     data‑driven and client‑focused solutions across Airline, EdTech, and Energy domains.
-    Proven ability to gather and translate business requirements into actionable insights,
+    Proven ability to gather and translate requirements into actionable insights,
     collaborate with cross‑functional teams, and support Agile delivery.
-    Experienced in client interaction, issue resolution, and product improvement using
-    Jira and Azure DevOps. Aspiring Product Manager with strong analytical,
-    stakeholder management, and problem‑solving skills, seeking to leverage
-    technical and business expertise in a global learning environment.
+    Experienced with Jira and Azure DevOps. Aspiring Product Manager.
   </p>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="px-10 py-20 fade z-10">
+<section id="skills" class="px-10 py-20 relative z-10 fade">
   <h2 class="text-3xl font-bold mb-6">Core Skills</h2>
-
-  <div class="space-y-4 opacity-90">
-    <p><strong>Business & Product Analysis:</strong> Requirement Gathering, BRD/FRD/SRS, User Stories, Wireframing, UAT Support</p>
-    <p><strong>Product & Client Handling:</strong> Client Communication, Issue Analysis, Prioritization, Root Cause Analysis</p>
-    <p><strong>Project Coordination:</strong> Sprint Planning, Risk Tracking, Stakeholder Management, Status Reporting</p>
-    <p><strong>Tools:</strong> Jira, Confluence, Azure DevOps, Excel, Power BI, Tableau, Figma, Postman</p>
-    <p><strong>Data Analysis:</strong> Excel (Pivot Tables, Lookups), SQL (Basics), Data Visualization</p>
-    <p><strong>Testing & QA:</strong> Test Cases, Defect Tracking, Regression Testing, UAT Execution</p>
+  <div class="space-y-3 opacity-85">
+    <p><strong>Business & Product Analysis:</strong> BRD, FRD, SRS, User Stories, Wireframing, UAT</p>
+    <p><strong>Product & Client Handling:</strong> Client Communication, RCA, Prioritization</p>
+    <p><strong>Project Coordination:</strong> Sprint Planning, Risk Tracking, Status Reporting</p>
+    <p><strong>Tools:</strong> Jira, Confluence, Azure DevOps, Excel, Power BI, Tableau, Figma</p>
+    <p><strong>Data:</strong> Excel (Pivots, Lookups), SQL (Basics)</p>
     <p><strong>Methodologies:</strong> Agile, Scrum, SDLC</p>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" class="px-10 py-20 fade z-10">
+<section id="experience" class="px-10 py-20 relative z-10 fade">
   <h2 class="text-3xl font-bold mb-6">Professional Experience</h2>
 
   <div class="glass p-6 rounded-xl mb-6">
     <h3 class="font-bold">Product Consultant – Caliber Technologies</h3>
-    <p class="text-sm opacity-70">Nov 2025 – Present | Hyderabad</p>
+    <p class="text-sm opacity-70">Nov 2025 – Present</p>
     <ul class="list-disc ml-5 mt-3 opacity-80 space-y-1">
-      <li>Worked on EPIQ platform (LearnIQ module) for enterprise pharma clients</li>
-      <li>Managed 3 confidential client projects as primary SPOC</li>
-      <li>Issue analysis, prioritization, and defect tracking in Azure DevOps</li>
-      <li>Conducted demos, release walkthroughs, patch update sessions</li>
-      <li>Supported demo setups using IIS and SSMS</li>
+      <li>EPIQ LearnIQ product support for pharma enterprise clients</li>
+      <li>Primary SPOC for 3 client projects</li>
+      <li>Issue analysis & tracking in Azure DevOps</li>
+      <li>Demos, releases, patch walkthroughs</li>
     </ul>
   </div>
 
   <div class="glass p-6 rounded-xl">
-    <h3 class="font-bold">Business Analyst & Quality Analyst – Inspire Infosol</h3>
-    <p class="text-sm opacity-70">Jan 2023 – Jul 2025 | Hyderabad</p>
+    <h3 class="font-bold">Business Analyst & QA – Inspire Infosol</h3>
+    <p class="text-sm opacity-70">Jan 2023 – Jul 2025</p>
     <ul class="list-disc ml-5 mt-3 opacity-80 space-y-1">
-      <li>Gathered and documented BRD, FRD, SRS, and User Stories</li>
-      <li>SQL & Excel-based data validation for airline applications</li>
-      <li>Coordinated Agile delivery and UAT execution</li>
-      <li>Workflow modeling and reporting for management decisions</li>
+      <li>Requirement documentation & stakeholder coordination</li>
+      <li>SQL & Excel-based data validation</li>
+      <li>UAT execution and defect reporting</li>
     </ul>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="px-10 py-20 fade z-10">
+<section id="projects" class="px-10 py-20 relative z-10 fade">
   <h2 class="text-3xl font-bold mb-6">Key Projects</h2>
-
   <div class="grid md:grid-cols-2 gap-6">
-    <div class="glass p-6 rounded-xl">Airline Reservation System – UAT, Agile ceremonies, booking workflows</div>
-    <div class="glass p-6 rounded-xl">Airline Loyalty & Discount Platform – Business rules, backlog grooming</div>
-    <div class="glass p-6 rounded-xl">Airline Chatbot (NLP / LLM) – Conversation design, validation</div>
-    <div class="glass p-6 rounded-xl">Career Guidance Platform – Dashboards, counselor workflows</div>
-    <div class="glass p-6 rounded-xl">Test Management Suite – Sprint‑based QA tracking</div>
-    <div class="glass p-6 rounded-xl">Solar PV Delivery Project – Functional validation & testing</div>
+    <div class="glass p-6 rounded-xl">✈ Airline Reservation System</div>
+    <div class="glass p-6 rounded-xl">🎯 Loyalty & Discount Platform</div>
+    <div class="glass p-6 rounded-xl">🤖 Airline Chatbot (LLM)</div>
+    <div class="glass p-6 rounded-xl">📊 Career Guidance Platform</div>
+    <div class="glass p-6 rounded-xl">🧪 Test Management Suite</div>
+    <div class="glass p-6 rounded-xl">☀ Solar PV Delivery Project</div>
   </div>
 </section>
 
-<!-- ADDITIONAL -->
-<section class="px-10 py-20 fade z-10">
-  <h2 class="text-3xl font-bold mb-4">Additional Information</h2>
-  <p class="opacity-80">
-    Strong interest in Product Management, Analytics, and data‑driven decision‑making.
-  </p>
-</section>
-
 <!-- FOOTER -->
-<footer class="px-10 py-10 text-sm opacity-70 z-10">
-  © 2026 Saida Vali Shaik | Hyderabad, India
+<footer class="px-10 py-10 text-sm opacity-70 relative z-10">
+  © 2026 Saida Vali Shaik — Hyderabad, India
 </footer>
 
+<!-- CONTACT BUTTON -->
+<a href="mailto:saidashaik1319@gmail.com" class="fab">✉</a>
+
 <script>
-/* Fade */
-new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("show")))
-.observe(document.body);
+/* Fade Observer — FIXED */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+},{ threshold: 0.2 });
 
-/* Theme */
-function toggleTheme(){document.body.classList.toggle("light");}
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
 
-/* AI NEURON EFFECT */
-const c=document.getElementById("bg-network"),ctx=c.getContext("2d");
-let w,h;function r(){w=c.width=innerWidth;h=c.height=innerHeight}
-addEventListener("resize",r);r();
-const n=[...Array(80)].map(()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5}));
-(function a(){
-ctx.clearRect(0,0,w,h);
-n.forEach(p=>{
-p.x+=p.vx;p.y+=p.vy;
-if(p.x<0||p.x>w)p.vx*=-1;
-if(p.y<0||p.y>h)p.vy*=-1;
-ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);
-ctx.fillStyle="rgba(255,255,255,.7)";ctx.fill();
-n.forEach(q=>{
-let d=Math.hypot(p.x-q.x,p.y-q.y);
-if(d<140){ctx.strokeStyle=`rgba(34,211,238,${1-d/140})`;
-ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
-});
-});
-requestAnimationFrame(a);
-})();
+/* Theme Toggle */
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+/* AI NEURON BACKGROUND */
+const canvas = document.getElementById("bg-network");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const nodes = Array.from({ length: 80 }, () => ({
+  x: Math.random() * w,
+  y: Math.random() * h,
+  vx: (Math.random() - 0.5) * 0.5,
+  vy: (Math.random() - 0.5) * 0.5,
+}));
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+
+  nodes.forEach(a => {
+    a.x += a.vx; a.y += a.vy;
+    if (a.x < 0 || a.x > w) a.vx *= -1;
+    if (a.y < 0 || a.y > h) a.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
+    ctx.fill();
+
+    nodes.forEach(b => {
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 140) {
+        ctx.strokeStyle = `rgba(34,211,238,${1 - d / 140})`;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    });
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
