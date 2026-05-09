@@ -1,211 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Saida Vali Shaik | Product Portfolio</title>
+<title>Portfolio Builder – Saida Vali Shaik</title>
 
-<!-- ✅ Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- ✅ Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
-
 <style>
-html { scroll-behavior: smooth; }
-
 body {
   background: radial-gradient(circle at top, #0b1220, #05070d);
   color: white;
-  overflow-x: hidden;
 }
-
-.glass { background: rgba(255,255,255,.06); backdrop-filter: blur(14px); border:1px solid rgba(255,255,255,.1); }
-.fade { opacity:0; transform:translateY(40px); transition:.8s; }
-.fade.show { opacity:1; transform:none; }
-
-#bg { position:fixed; inset:0; z-index:0; }
-
-.edit-btn {
-  position:absolute; top:12px; right:12px;
-  background:#22d3ee; color:black;
-  padding:4px 10px; border-radius:999px;
-  font-size:12px; cursor:pointer;
-  display:none;
+.card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.editing { outline:2px dashed #22d3ee; }
-
-#adminPanel {
-  display:none;
-  position:fixed; bottom:20px; left:20px;
-  z-index:50;
+.editing {
+  outline: 2px dashed #22d3ee;
+  background: rgba(34,211,238,0.08);
 }
 </style>
 </head>
 
-<body>
+<body class="px-6 md:px-20 py-10">
 
-<canvas id="bg"></canvas>
+<!-- HEADER -->
+<h1 class="text-4xl font-bold mb-2">Portfolio Builder</h1>
+<p class="opacity-70 mb-6">Fill all sections → Save → Export as PDF or Word</p>
 
-<!-- 🔐 LOGIN MODAL -->
-<div id="loginModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
-  <div class="glass p-6 rounded-xl w-80">
-    <h3 class="text-xl font-bold mb-4 text-center">Admin Login</h3>
-    <input id="email" placeholder="Email" class="w-full mb-2 px-3 py-2 text-black rounded"/>
-    <input id="password" type="password" placeholder="Password" class="w-full mb-3 px-3 py-2 text-black rounded"/>
-    <button onclick="login()" class="bg-cyan-400 w-full py-2 rounded text-black">Login</button>
-    <p id="err" class="text-red-400 text-sm mt-2 hidden">Login failed</p>
+<!-- PROGRESS -->
+<div class="mb-8">
+  <div class="flex justify-between text-sm mb-1">
+    <span>Completion</span>
+    <span id="percent">0%</span>
+  </div>
+  <div class="w-full bg-white/10 rounded-full h-3">
+    <div id="bar" class="bg-cyan-400 h-3 rounded-full" style="width:0%"></div>
   </div>
 </div>
 
-<!-- ✅ ADMIN PANEL -->
-<div id="adminPanel" class="glass p-4 rounded-xl space-y-2">
-  <button onclick="exportHTML()" class="bg-white text-black px-4 py-1 rounded">Export HTML</button>
-  <button onclick="logout()" class="bg-red-400 text-black px-4 py-1 rounded">Logout</button>
+<!-- TOGGLE -->
+<button onclick="toggleEdit()" class="mb-6 bg-cyan-400 text-black px-4 py-2 rounded">
+  Turn ON Edit
+</button>
+
+<!-- SECTIONS -->
+
+<div class="space-y-6" id="content">
+
+  <div class="card p-6 rounded-xl editable">
+    <h2 class="text-xl font-bold mb-2">Basic Info</h2>
+    <div contenteditable="false" class="editable-content">
+      <p>Full Name</p>
+      <p>Location | Phone | Email</p>
+    </div>
+  </div>
+
+  <div class="card p-6 rounded-xl editable">
+    <h2 class="text-xl font-bold mb-2">Professional Summary</h2>
+    <div contenteditable="false" class="editable-content">
+      <p>Write your professional summary here…</p>
+    </div>
+  </div>
+
+  <div class="card p-6 rounded-xl editable">
+    <h2 class="text-xl font-bold mb-2">Core Skills</h2>
+    <div contenteditable="false" class="editable-content">
+      <p>List your skills here…</p>
+    </div>
+  </div>
+
+  <div class="card p-6 rounded-xl editable">
+    <h2 class="text-xl font-bold mb-2">Experience</h2>
+    <div contenteditable="false" class="editable-content">
+      <p>Add your experience details…</p>
+    </div>
+  </div>
+
+  <div class="card p-6 rounded-xl editable">
+    <h2 class="text-xl font-bold mb-2">Projects</h2>
+    <div contenteditable="false" class="editable-content">
+      <p>Describe your projects…</p>
+    </div>
+  </div>
+
+  <div class="card p-6 rounded-xl editable">
+    <h2 class="text-xl font-bold mb-2">Education</h2>
+    <div contenteditable="false" class="editable-content">
+      <p>Add education details…</p>
+    </div>
+  </div>
+
 </div>
 
-<header class="fixed top-0 w-full glass px-10 py-4 z-40 flex justify-between">
-  <div class="font-bold">VISRAI</div>
-  <nav class="flex gap-6 text-sm">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-  </nav>
-</header>
+<!-- SAVE -->
+<button onclick="saveAll()" class="mt-8 bg-green-400 text-black px-6 py-3 rounded text-lg">
+  Save & Generate
+</button>
 
-<section class="h-screen flex items-center justify-center text-center fade editable relative" data-id="hero">
-  <div class="edit-btn">Edit</div>
-  <div class="editable-content z-10 max-w-2xl">
-    <h1 class="text-6xl font-extrabold">SAIDA VALI SHAIK</h1>
-    <p class="mt-4 opacity-80">Business Analyst | Product Consultant</p>
-    <p class="text-sm mt-2 opacity-60">Hyderabad · +91‑7569784511 · saidashaik1319@gmail.com</p>
+<!-- EXPORT -->
+<div id="export" class="mt-6 hidden space-x-4">
+  <button onclick="exportPDF()" class="bg-white text-black px-4 py-2 rounded">
+    Download PDF
+  </button>
+  <button onclick="exportWord()" class="bg-white text-black px-4 py-2 rounded">
+    Download Word
+  </button>
+</div>
 
-    <a href="resume.pdf" download class="inline-block mt-6 px-6 py-2 bg-cyan-400 text-black rounded-full">
-      📄 Download Resume
-    </a>
-  </div>
-</section>
+<script>
+let editing = false;
 
-<section id="about" class="px-10 py-20 fade editable relative" data-id="about">
-  <div class="edit-btn">Edit</div>
-  <div class="editable-content">
-    <h2 class="text-3xl font-bold mb-3">Professional Summary</h2>
-    <p class="opacity-80 max-w-4xl">
-      Business Analyst & Product Consultant with 3+ years of experience across Airline, EdTech and Energy domains.
-    </p>
-  </div>
-</section>
-
-<section id="skills" class="px-10 py-20 fade editable relative" data-id="skills">
-  <div class="edit-btn">Edit</div>
-  <div class="editable-content">
-    <h2 class="text-3xl font-bold mb-3">Core Skills</h2>
-    <p>Agile, Jira, Azure DevOps, Excel, Power BI, Tableau, SQL (Basics), UAT</p>
-  </div>
-</section>
-
-<section id="experience" class="px-10 py-20 fade editable relative" data-id="experience">
-  <div class="edit-btn">Edit</div>
-  <div class="editable-content">
-    <h2 class="text-3xl font-bold mb-3">Experience</h2>
-    <p>Caliber Technologies — Product Consultant</p>
-    <p>Inspire Infosol — Business Analyst</p>
-  </div>
-</section>
-
-<section id="projects" class="px-10 py-20 fade editable relative" data-id="projects">
-  <div class="edit-btn">Edit</div>
-  <div class="editable-content">
-    <h2 class="text-3xl font-bold mb-3">Projects</h2>
-    <p>Airline System, Chatbot (LLM), EdTech Platform, Solar PV</p>
-  </div>
-</section>
-
-<footer class="px-10 py-10 opacity-60">
-  © 2026 Saida Vali Shaik
-</footer>
-
-<script type="module">
-/* ✅ FIREBASE CONFIG — REPLACE WITH YOURS */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-window.login = async () => {
-  try {
-    await signInWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value
-    );
-    loginModal.classList.add("hidden");
-  } catch {
-    err.classList.remove("hidden");
-  }
-};
-
-window.logout = async () => {
-  await signOut(auth);
-};
-
-onAuthStateChanged(auth, user => {
-  const admin = !!user;
-  document.querySelectorAll(".edit-btn").forEach(b => b.style.display = admin ? "block" : "none");
-  adminPanel.style.display = admin ? "block" : "none";
-  if (!admin) loginModal.classList.remove("hidden");
-});
-
-/* ✅ EDIT SYSTEM + FIRESTORE */
-document.querySelectorAll(".editable").forEach(card => {
-  const btn = card.querySelector(".edit-btn");
-  const box = card.querySelector(".editable-content");
-  const id = card.dataset.id;
-
-  btn.onclick = async () => {
-    if (!box.isContentEditable) {
-      box.contentEditable = true;
-      box.classList.add("editing");
-      btn.textContent = "Save";
-    } else {
-      box.contentEditable = false;
-      box.classList.remove("editing");
-      btn.textContent = "Edit";
-      await setDoc(doc(db, "content", id), { html: box.innerHTML });
-    }
-  };
-
-  getDoc(doc(db, "content", id)).then(snap => {
-    if (snap.exists()) box.innerHTML = snap.data().html;
+function toggleEdit() {
+  editing = !editing;
+  document.querySelectorAll(".editable-content").forEach(el => {
+    el.contentEditable = editing;
+    el.classList.toggle("editing", editing);
   });
-});
+}
 
-/* ✅ EXPORT */
-window.exportHTML = () => {
-  const clone = document.documentElement.cloneNode(true);
-  clone.querySelectorAll(".edit-btn,#adminPanel,#loginModal").forEach(e=>e.remove());
-  const blob = new Blob(["<!DOCTYPE html>"+clone.outerHTML],{type:"text/html"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="portfolio-export.html";
+function calculateProgress() {
+  const blocks = document.querySelectorAll(".editable-content");
+  let filled = 0;
+  blocks.forEach(b => {
+    if (b.innerText.trim().length > 10) filled++;
+  });
+  const percent = Math.round((filled / blocks.length) * 100);
+  document.getElementById("percent").innerText = percent + "%";
+  document.getElementById("bar").style.width = percent + "%";
+  return percent;
+}
+
+document.addEventListener("input", calculateProgress);
+
+function saveAll() {
+  const percent = calculateProgress();
+  if (percent < 100) {
+    alert("Please complete all sections before saving.");
+    return;
+  }
+  document.getElementById("export").classList.remove("hidden");
+  alert("Saved successfully! You can now export.");
+}
+
+function exportPDF() {
+  window.print();
+}
+
+function exportWord() {
+  const content = document.getElementById("content").innerHTML;
+  const blob = new Blob(
+    ["<html><body>" + content + "</body></html>"],
+    { type: "application/msword" }
+  );
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "portfolio.doc";
   a.click();
-};
-
-/* ✅ FADE */
-const obs=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("show")));
-document.querySelectorAll(".fade").forEach(el=>obs.observe(el));
+}
 </script>
+
 </body>
 </html>
+``
